@@ -431,5 +431,19 @@ body {
     width: 90px;
 }
 
+.navigation-horizontal .submenu {
+    background-color: #e2e2eb;
+ margin-top: -6px;
+ margin-right: 1px;
+ margin-left: 1px;
+}
+
+.navigation-horizontal .submenu .nav .nav-item .nav-link {
+ font-size: 12px;
+ padding: 0px 12px;
+ transition: 0.3s;
+ line-height: 1;
+}
+
 
 /*# sourceMappingURL=style.css.map */

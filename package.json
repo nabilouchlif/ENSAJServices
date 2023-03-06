@@ -1,7 +1,7 @@
 {
   "name": "tri",
   "version": "1.0.0",
-  "description": "Projet qui consiste a développer une plateforme des résultats des étudiants de l'ENSAJ",
+  "description": "Projet qui consiste a développer une plateforme de gestion des services administratifs de l'ENSAJ",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

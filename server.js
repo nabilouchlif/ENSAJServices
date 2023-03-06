@@ -936,8 +936,7 @@ app.get('/dash', async (req, res) => {
 
         res.render('dash', {
             studentsNumber: studentsNumber,
-            profsNumber: profsNumber,
-            notes: listdesnOtes
+            profsNumber: profsNumber
         })
     } else {
         res.render('error')
