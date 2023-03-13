@@ -36,7 +36,7 @@ const upload = multer({
 });
 
 const port = process.env.PORT || 4040;
-mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.ox3qklg.mongodb.net/test"
+mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.xjh2x6v.mongodb.net/test"
 mongoose.connect(mongo_url)
     .then((res) => {
         app.listen(port);
@@ -841,6 +841,29 @@ app.get('/suivredemande', (req, res) => {
         res.render('error')
     }
 })
+
+app.get('/certifscolarite', (req, res) => {
+    if (ourClient.role == "etudiant") {
+        let listOfDemandes = []
+        Demande.find()
+            .then(result => {
+                result.forEach(demande => {
+                    if (demande.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
+                        listOfDemandes.push(demande);
+                    }
+                });
+                res.render('certifscolarite', {
+                    demandes: listOfDemandes
+                })
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    } else {
+        res.render('error')
+    }
+})
+
 
 app.post('/deletedemande', (req, res) => {
     const id = req.body.demandeid;
