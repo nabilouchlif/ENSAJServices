@@ -841,7 +841,27 @@ app.get('/suivredemande', (req, res) => {
     }
 })
 
-
+app.get('/certifscolarite', (req, res) => {
+    if (ourClient.role == "etudiant") {
+        let Demandecertif = []
+        Demande.find()
+            .then(result => {
+                result.forEach(demande => {
+                    if (demande.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
+                        Demandecertif.push(demande);
+                    }
+                });
+                res.render('certifscolarite', {
+                    demandes: Demandecertif
+                })
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    } else {
+        res.render('error')
+    }
+})
 app.get('/relevedenote', (req, res) => {
     if (ourClient.role == "etudiant") {
         let Demandereleve = []
