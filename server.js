@@ -842,18 +842,63 @@ app.get('/suivredemande', (req, res) => {
     }
 })
 
-app.get('/certifscolarite', (req, res) => {
+
+app.get('/relevedenote', (req, res) => {
     if (ourClient.role == "etudiant") {
-        let listOfDemandes = []
+        let Demandereleve = []
         Demande.find()
             .then(result => {
                 result.forEach(demande => {
                     if (demande.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
-                        listOfDemandes.push(demande);
+                        Demandereleve.push(demande);
                     }
                 });
-                res.render('certifscolarite', {
-                    demandes: listOfDemandes
+                res.render('relevedenote', {
+                    demandes: Demandereleve
+                })
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    } else {
+        res.render('error')
+    }
+})
+
+app.get('/conventiondestage', (req, res) => {
+    if (ourClient.role == "etudiant") {
+        let Demandeconvention = []
+        Demande.find()
+            .then(result => {
+                result.forEach(demande => {
+                    if (demande.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
+                        Demandeconvention.push(demande);
+                    }
+                });
+                res.render('conventiondestage', {
+                    demandes: Demandeconvention
+                })
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    } else {
+        res.render('error')
+    }
+})
+
+app.get('/lettrederecommendation', (req, res) => {
+    if (ourClient.role == "etudiant") {
+        let Demanderecommandation = []
+        Demande.find()
+            .then(result => {
+                result.forEach(demande => {
+                    if (demande.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
+                        Demanderecommandation.push(demande);
+                    }
+                });
+                res.render('lettrederecommendation', {
+                    demandes: Demanderecommandation
                 })
             })
             .catch(err => {
