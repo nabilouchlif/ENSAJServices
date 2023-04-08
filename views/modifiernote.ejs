@@ -126,7 +126,7 @@
                     <ul id="sidebarnav">
                         <!-- User Profile-->
                         <% switch (ourClient.role) {
-                            case 'etudiant' : %>
+                            case 'Etudiant' : %>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="./index" aria-expanded="false">
                                 <i class="fa-regular fa-user"></i> <span class="hide-menu">&nbsp;&nbsp;&nbsp;Mon Profile</span></a>
@@ -141,7 +141,7 @@
 
                                     <% break;
                             
-                            case 'professeur' : %>
+                            case 'Professeur' : %>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="./index" aria-expanded="false">
                                 <i class="fa-regular fa-user"></i> <span class="hide-menu">&nbsp;&nbsp;&nbsp;Mon Profile</span></a>
@@ -211,7 +211,7 @@
                             </nav>
                         </div>
                     </div>
-                    <% if (person.role == "etudiant") { %>
+                    <% if (person.role == "Etudiant") { %>
                         <div class="col-md-6 col-4 align-self-center">
                             <div class="text-end upgrade-btn">
                                 <a href="./create"
