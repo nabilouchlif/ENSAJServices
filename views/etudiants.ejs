@@ -266,7 +266,7 @@
 
                                     <div class="row text-center">
                                         <% profs.forEach(prof=> { %>
-                                            <% if (prof.classes.includes("2ITE-1")) { %>
+                                            <% if (prof.classes.includes("2ite1")) { %>
                                                 <div class="col-md-1 mb-4">
                                                     <img class="rounded-circle" alt="100x100"
                                                         title="<%= prof.prenom + " " + prof.nom %> "
@@ -277,65 +277,69 @@
                                                     <% }) %>
                                     </div>
 
-                                    <table class="table user-table">
-                                        <thead>
-                                            <tr>
-                                                <th class="border-top-0">Image</th>
-                                                <th class="border-top-0">Nom complet</th>
-                                                <th class="border-top-0">Note générale</th>
-                                                <th class="border-top-0">Etat</th>
-                                            </tr>
-                                        </thead>
+                                    <div class="table-responsive">
+                                        <table class="table user-table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="border-top-0">Image</th>
+                                                    <th class="border-top-0">Nom complet</th>
+                                                    <th class="border-top-0">Note générale</th>
+                                                    <th class="border-top-0">Etat</th>
+                                                </tr>
+                                            </thead>
 
-                                        <tbody>
-                                            <% person.forEach(student=> { %>
-                                                <% if (student.filiere=="2ITE-1" ) { %>
-                                                    <span style="display: none;"> <%- noteMoy=0 %> </span>
-                                                    <span style="display: none;"><%- i=0 %> </span>
-                                                    <% marks.forEach(mark=> { %>
-                                                        <% if (mark.etudiant==(student.prenom + " " + student.nom)) { %>
-                                                            <span style="display: none;"> <%- noteMoy=noteMoy +
-                                                                    mark.note %> </span>
-                                                            <span style="display: none;"> <%- i=i + 1 %> </span>
-                                                            <% } %>
-                                                                <% }) %>
-                                                                    <tr>
-                                                                        <td><img src="static/uploads/images/<%= student.image %>"
-                                                                                class="rounded-circle" alt="Avatar"
-                                                                                style="width: 50px; height: 50px;">
-                                                                        </td>
-                                                                        <td>
-                                                                            <%= student.prenom + " " + student.nom%>
-                                                                        </td>
-                                                                        <% if (noteMoy==0) { %>
-                                                                            <td>
-                                                                                <%= noteMoy %>
+                                            <tbody>
+
+                                                <% person.forEach(student=> { %>
+                                                    <% if (student.filiere=="2ite1" ) { %>
+                                                        <span style="display: none;"> <%- noteMoy=0 %> </span>
+                                                        <span style="display: none;"><%- i=0 %> </span>
+                                                        <% marks.forEach(mark=> { %>
+                                                            <% if (mark.etudiant==(student.prenom + " " + student.nom))
+                                                                { %>
+                                                                <span style="display: none;"> <%- noteMoy=noteMoy +
+                                                                        mark.note %> </span>
+                                                                <span style="display: none;"> <%- i=i + 1 %> </span>
+                                                                <% } %>
+                                                                    <% }) %>
+                                                                        <tr>
+                                                                            <td><img src="static/uploads/images/<%= student.image %>"
+                                                                                    class="rounded-circle" alt="Avatar"
+                                                                                    style="width: 50px; height: 50px;">
                                                                             </td>
-                                                                            <% } else { %>
+                                                                            <td>
+                                                                                <%= student.prenom + " " + student.nom%>
+                                                                            </td>
+                                                                            <% if (noteMoy==0) { %>
                                                                                 <td>
-                                                                                    <%= Math.round((noteMoy / i) * 100)
-                                                                                        / 100 %>
+                                                                                    <%= noteMoy %>
                                                                                 </td>
-                                                                                <% } %>
-                                                                                    <% if ((noteMoy / i) < 12 |
-                                                                                        (noteMoy==0)) { %>
-                                                                                        <td
-                                                                                            style="color: rgb(231, 80, 80);">
-                                                                                            Non Validé</td>
-                                                                                        <% } else { %>
+                                                                                <% } else { %>
+                                                                                    <td>
+                                                                                        <%= Math.round((noteMoy / i) *
+                                                                                            100) / 100 %>
+                                                                                    </td>
+                                                                                    <% } %>
+                                                                                        <% if ((noteMoy / i) < 12 |
+                                                                                            (noteMoy==0)) { %>
                                                                                             <td
-                                                                                                style="color: rgb(66, 168, 66);">
-                                                                                                Validé</td>
-                                                                                            <% } %>
+                                                                                                style="color: rgb(231, 80, 80);">
+                                                                                                Non Validé</td>
+                                                                                            <% } else { %>
+                                                                                                <td
+                                                                                                    style="color: rgb(66, 168, 66);">
+                                                                                                    Validé</td>
+                                                                                                <% } %>
 
-                                                                    </tr>
-                                                                    <% } %>
-                                                                        <% }) %>
+                                                                        </tr>
+                                                                        <% } %>
+                                                                            <% }) %>
 
 
 
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -354,7 +358,7 @@
                                     <h6 class="card-subtitle">liste des professeurs<code> </code> </h6>
                                     <div class="row text-center">
                                         <% profs.forEach(prof=> { %>
-                                            <% if (prof.classes.includes("2ITE-2")) { %>
+                                            <% if (prof.classes.includes("2ite2")) { %>
                                                 <div class="col-md-1 mb-4">
                                                     <img class="rounded-circle" alt="100x100"
                                                         title="<%= prof.prenom + " " + prof.nom %>"
@@ -364,61 +368,64 @@
                                                 <% } %>
                                                     <% }) %>
                                     </div>
-                                    <table class="table user-table">
-                                        <thead>
-                                            <tr>
-                                                <th class="border-top-0">Image</th>
-                                                <th class="border-top-0">Nom complet</th>
-                                                <th class="border-top-0">Note générale</th>
-                                                <th class="border-top-0">Etat</th>
-                                            </tr>
-                                        </thead>
+                                    <div class="table-responsive">
+                                        <table class="table user-table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="border-top-0">Image</th>
+                                                    <th class="border-top-0">Nom complet</th>
+                                                    <th class="border-top-0">Note générale</th>
+                                                    <th class="border-top-0">Etat</th>
+                                                </tr>
+                                            </thead>
 
-                                        <tbody>
-                                            <% person.forEach(student=> { %>
-                                                <% if (student.filiere=="2ITE-2" ) { %>
-                                                    <span style="display: none;"> <%- noteMoy=0 %> </span>
-                                                    <span style="display: none;"><%- i=0 %> </span>
-                                                    <% marks.forEach(mark=> { %>
-                                                        <% if (mark.etudiant==(student.prenom + " " + student.nom)) { %>
-                                                            <span style="display: none;"> <%- noteMoy=noteMoy +
-                                                                    mark.note %> </span>
-                                                            <span style="display: none;"> <%- i=i + 1 %> </span>
-                                                            <% } %>
-                                                                <% }) %>
-                                                                    <tr>
-                                                                        <td><img src="static/uploads/images/<%= student.image %>"
-                                                                                class="rounded-circle" alt="Avatar"
-                                                                                style="width: 50px; height: 50px;">
-                                                                        </td>
-                                                                        <td>
-                                                                            <%= student.prenom + " " + student.nom%>
-                                                                        </td>
-                                                                        <% if (noteMoy==0) { %>
-                                                                            <td>
-                                                                                <%= noteMoy %>
+                                            <tbody>
+                                                <% person.forEach(student=> { %>
+                                                    <% if (student.filiere=="2ite2" ) { %>
+                                                        <span style="display: none;"> <%- noteMoy=0 %> </span>
+                                                        <span style="display: none;"><%- i=0 %> </span>
+                                                        <% marks.forEach(mark=> { %>
+                                                            <% if (mark.etudiant==(student.prenom + " " + student.nom))
+                                                                { %>
+                                                                <span style="display: none;"> <%- noteMoy=noteMoy +
+                                                                        mark.note %> </span>
+                                                                <span style="display: none;"> <%- i=i + 1 %> </span>
+                                                                <% } %>
+                                                                    <% }) %>
+                                                                        <tr>
+                                                                            <td><img src="static/uploads/images/<%= student.image %>"
+                                                                                    class="rounded-circle" alt="Avatar"
+                                                                                    style="width: 50px; height: 50px;">
                                                                             </td>
-                                                                            <% } else { %>
+                                                                            <td>
+                                                                                <%= student.prenom + " " + student.nom%>
+                                                                            </td>
+                                                                            <% if (noteMoy==0) { %>
                                                                                 <td>
-                                                                                    <%= Math.round((noteMoy / i) * 100)
-                                                                                        / 100 %>
+                                                                                    <%= noteMoy %>
                                                                                 </td>
-                                                                                <% } %>
-                                                                                    <% if ((noteMoy / i) < 12 |
-                                                                                        (noteMoy==0)) { %>
-                                                                                        <td
-                                                                                            style="color: rgb(231, 80, 80);">
-                                                                                            Non Validé</td>
-                                                                                        <% } else { %>
+                                                                                <% } else { %>
+                                                                                    <td>
+                                                                                        <%= Math.round((noteMoy / i) *
+                                                                                            100) / 100 %>
+                                                                                    </td>
+                                                                                    <% } %>
+                                                                                        <% if ((noteMoy / i) < 12 |
+                                                                                            (noteMoy==0)) { %>
                                                                                             <td
-                                                                                                style="color: rgb(66, 168, 66);">
-                                                                                                Validé</td>
-                                                                                            <% } %>
-                                                                    </tr>
-                                                                    <% } %>
-                                                                        <% }) %>
-                                        </tbody>
-                                    </table>
+                                                                                                style="color: rgb(231, 80, 80);">
+                                                                                                Non Validé</td>
+                                                                                            <% } else { %>
+                                                                                                <td
+                                                                                                    style="color: rgb(66, 168, 66);">
+                                                                                                    Validé</td>
+                                                                                                <% } %>
+                                                                        </tr>
+                                                                        <% } %>
+                                                                            <% }) %>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -440,7 +447,7 @@
 
                                     <div class="row text-center">
                                         <% profs.forEach(prof=> { %>
-                                            <% if (prof.classes.includes("ISIC-1")) { %>
+                                            <% if (prof.classes.includes("isic1")) { %>
                                                 <div class="col-md-1 mb-4">
                                                     <img class="rounded-circle" alt="100x100"
                                                         title="<%= prof.prenom + " " + prof.nom %> "
@@ -451,70 +458,78 @@
                                                     <% }) %>
                                     </div>
 
-                                    <table class="table user-table">
-                                        <thead>
-                                            <tr>
-                                                <th class="border-top-0">Image</th>
-                                                <th class="border-top-0">Nom complet</th>
-                                                <th class="border-top-0">Note générale</th>
-                                                <th class="border-top-0">Etat</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
 
 
 
 
 
-                                            <% person.forEach(student=> { %>
-                                                <% if (student.filiere=="ISIC-1" ) { %>
-                                                    <span style="display: none;"> <%- noteMoy=0 %> </span>
-                                                    <span style="display: none;"><%- i=0 %> </span>
-                                                    <% marks.forEach(mark=> { %>
-                                                        <% if (mark.etudiant==(student.prenom + " " + student.nom)) { %>
-                                                            <span style="display: none;"> <%- noteMoy=noteMoy +
-                                                                    mark.note %> </span>
-                                                            <span style="display: none;"> <%- i=i + 1 %> </span>
-                                                            <% } %>
-                                                                <% }) %>
-                                                                    <tr>
-                                                                        <td><img src="static/uploads/images/<%= student.image %>"
-                                                                                class="rounded-circle" alt="Avatar"
-                                                                                style="width: 50px; height: 50px;">
-                                                                        </td>
-                                                                        <td>
-                                                                            <%= student.prenom + " " + student.nom%>
-                                                                        </td>
-                                                                        <% if (noteMoy==0) { %>
-                                                                            <td>
-                                                                                <%= noteMoy %>
+                                    <div class="table-responsive">
+                                        <table class="table user-table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="border-top-0">Image</th>
+                                                    <th class="border-top-0">Nom complet</th>
+                                                    <th class="border-top-0">Note générale</th>
+                                                    <th class="border-top-0">Etat</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+
+
+
+
+
+                                                <% person.forEach(student=> { %>
+                                                    <% if (student.filiere=="isic1" ) { %>
+                                                        <span style="display: none;"> <%- noteMoy=0 %> </span>
+                                                        <span style="display: none;"><%- i=0 %> </span>
+                                                        <% marks.forEach(mark=> { %>
+                                                            <% if (mark.etudiant==(student.prenom + " " + student.nom))
+                                                                { %>
+                                                                <span style="display: none;"> <%- noteMoy=noteMoy +
+                                                                        mark.note %> </span>
+                                                                <span style="display: none;"> <%- i=i + 1 %> </span>
+                                                                <% } %>
+                                                                    <% }) %>
+                                                                        <tr>
+                                                                            <td><img src="static/uploads/images/<%= student.image %>"
+                                                                                    class="rounded-circle" alt="Avatar"
+                                                                                    style="width: 50px; height: 50px;">
                                                                             </td>
-                                                                            <% } else { %>
+                                                                            <td>
+                                                                                <%= student.prenom + " " + student.nom%>
+                                                                            </td>
+                                                                            <% if (noteMoy==0) { %>
                                                                                 <td>
-                                                                                    <%= Math.round((noteMoy / i) * 100)
-                                                                                        / 100 %>
+                                                                                    <%= noteMoy %>
                                                                                 </td>
-                                                                                <% } %>
-                                                                                    <% if ((noteMoy / i) < 12 |
-                                                                                        (noteMoy==0)) { %>
-                                                                                        <td
-                                                                                            style="color: rgb(231, 80, 80);">
-                                                                                            Non Validé</td>
-                                                                                        <% } else { %>
+                                                                                <% } else { %>
+                                                                                    <td>
+                                                                                        <%= Math.round((noteMoy / i) *
+                                                                                            100) / 100 %>
+                                                                                    </td>
+                                                                                    <% } %>
+                                                                                        <% if ((noteMoy / i) < 12 |
+                                                                                            (noteMoy==0)) { %>
                                                                                             <td
-                                                                                                style="color: rgb(66, 168, 66);">
-                                                                                                Validé</td>
-                                                                                            <% } %>
+                                                                                                style="color: rgb(231, 80, 80);">
+                                                                                                Non Validé</td>
+                                                                                            <% } else { %>
+                                                                                                <td
+                                                                                                    style="color: rgb(66, 168, 66);">
+                                                                                                    Validé</td>
+                                                                                                <% } %>
 
-                                                                    </tr>
-                                                                    <% } %>
-                                                                        <% }) %>
+                                                                        </tr>
+                                                                        <% } %>
+                                                                            <% }) %>
 
 
 
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -537,7 +552,7 @@
 
                                     <div class="row text-center">
                                         <% profs.forEach(prof=> { %>
-                                            <% if (prof.classes.includes("ISIC-2")) { %>
+                                            <% if (prof.classes.includes("isic2")) { %>
                                                 <div class="col-md-1 mb-4">
                                                     <img class="rounded-circle" alt="100x100"
                                                         title="<%= prof.prenom + " " + prof.nom %> "
@@ -547,70 +562,78 @@
                                                 <% } %>
                                                     <% }) %>
                                     </div>
-                                    <table class="table user-table">
-                                        <thead>
-                                            <tr>
-                                                <th class="border-top-0">Image</th>
-                                                <th class="border-top-0">Nom complet</th>
-                                                <th class="border-top-0">Note générale</th>
-                                                <th class="border-top-0">Etat</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
 
 
 
 
 
-                                            <% person.forEach(student=> { %>
-                                                <% if (student.filiere=="ISIC-2" ) { %>
-                                                    <span style="display: none;"> <%- noteMoy=0 %> </span>
-                                                    <span style="display: none;"><%- i=0 %> </span>
-                                                    <% marks.forEach(mark=> { %>
-                                                        <% if (mark.etudiant==(student.prenom + " " + student.nom)) { %>
-                                                            <span style="display: none;"> <%- noteMoy=noteMoy +
-                                                                    mark.note %> </span>
-                                                            <span style="display: none;"> <%- i=i + 1 %> </span>
-                                                            <% } %>
-                                                                <% }) %>
-                                                                    <tr>
-                                                                        <td><img src="static/uploads/images/<%= student.image %>"
-                                                                                class="rounded-circle" alt="Avatar"
-                                                                                style="width: 50px; height: 50px;">
-                                                                        </td>
-                                                                        <td>
-                                                                            <%= student.prenom + " " + student.nom%>
-                                                                        </td>
-                                                                        <% if (noteMoy==0) { %>
-                                                                            <td>
-                                                                                <%= noteMoy %>
+                                    <div class="table-responsive">
+                                        <table class="table user-table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="border-top-0">Image</th>
+                                                    <th class="border-top-0">Nom complet</th>
+                                                    <th class="border-top-0">Note générale</th>
+                                                    <th class="border-top-0">Etat</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+
+
+
+
+
+                                                <% person.forEach(student=> { %>
+                                                    <% if (student.filiere=="isic2" ) { %>
+                                                        <span style="display: none;"> <%- noteMoy=0 %> </span>
+                                                        <span style="display: none;"><%- i=0 %> </span>
+                                                        <% marks.forEach(mark=> { %>
+                                                            <% if (mark.etudiant==(student.prenom + " " + student.nom))
+                                                                { %>
+                                                                <span style="display: none;"> <%- noteMoy=noteMoy +
+                                                                        mark.note %> </span>
+                                                                <span style="display: none;"> <%- i=i + 1 %> </span>
+                                                                <% } %>
+                                                                    <% }) %>
+                                                                        <tr>
+                                                                            <td><img src="static/uploads/images/<%= student.image %>"
+                                                                                    class="rounded-circle" alt="Avatar"
+                                                                                    style="width: 50px; height: 50px;">
                                                                             </td>
-                                                                            <% } else { %>
+                                                                            <td>
+                                                                                <%= student.prenom + " " + student.nom%>
+                                                                            </td>
+                                                                            <% if (noteMoy==0) { %>
                                                                                 <td>
-                                                                                    <%= Math.round((noteMoy / i) * 100)
-                                                                                        / 100 %>
+                                                                                    <%= noteMoy %>
                                                                                 </td>
-                                                                                <% } %>
-                                                                                    <% if ((noteMoy / i) < 12 |
-                                                                                        (noteMoy==0)) { %>
-                                                                                        <td
-                                                                                            style="color: rgb(231, 80, 80);">
-                                                                                            Non Validé</td>
-                                                                                        <% } else { %>
+                                                                                <% } else { %>
+                                                                                    <td>
+                                                                                        <%= Math.round((noteMoy / i) *
+                                                                                            100) / 100 %>
+                                                                                    </td>
+                                                                                    <% } %>
+                                                                                        <% if ((noteMoy / i) < 12 |
+                                                                                            (noteMoy==0)) { %>
                                                                                             <td
-                                                                                                style="color: rgb(66, 168, 66);">
-                                                                                                Validé</td>
-                                                                                            <% } %>
+                                                                                                style="color: rgb(231, 80, 80);">
+                                                                                                Non Validé</td>
+                                                                                            <% } else { %>
+                                                                                                <td
+                                                                                                    style="color: rgb(66, 168, 66);">
+                                                                                                    Validé</td>
+                                                                                                <% } %>
 
-                                                                    </tr>
-                                                                    <% } %>
-                                                                        <% }) %>
+                                                                        </tr>
+                                                                        <% } %>
+                                                                            <% }) %>
 
 
 
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -16,7 +16,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="static1/images/favicon.png">
     <!-- Custom CSS -->
-    <link href="/static/style.min.css" rel="stylesheet">
+    <link href="static/style.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="/static/materialdesignicons.min.css">
     <link rel="stylesheet" href="/static/material-design-iconic-font.css">
@@ -370,105 +370,126 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
+
+
+
                                         <h4 class="card-title">
                                             <%= module.classe %> - <%= module.nom %>
                                         </h4>
-                                        <h6 class="card-subtitle">Liste des étudiants<code> </code> </h6>
-                                        <table class="table user-table">
-                                            <thead>
-                                                <tr>
-                                                    <th class="border-top-0">Image</th>
-                                                    <th class="border-top-0">Nom complet</th>
-                                                    <th class="border-top-0">Note</th>
-                                                    <th class="border-top-0">Action</th>
-                                                </tr>
-                                            </thead>
+                                        <h6 class="card-subtitle">liste des étudiants<code> </code> </h6>
+                                        <div class="table-responsive">
+                                            <table class="table user-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="border-top-0">Image</th>
+                                                        <th class="border-top-0">Nom complet</th>
+                                                        <th class="border-top-0">Note</th>
+                                                        <th class="border-top-0">Action</th>
 
-                                            <tbody>
-                                                <% person.forEach(async student=> { %>
-                                                    <% if (module.classe.includes(student.filiere)) { %>
-                                                        <tr>
-                                                            <td><img src="static/uploads/images/<%= student.image %>"
-                                                                    class="rounded-circle" alt="Avatar"
-                                                                    style="width: 50px; height: 50px;"></td>
-                                                            <td>
-                                                                <%=student.prenom + " " + student.nom %>
-                                                            </td>
+                                                    </tr>
+                                                </thead>
 
-                                                            <span style="display: none;">
-                                                                <%= a=false %>
-                                                            </span>
-                                                            <% notes.forEach(mark=> { %>
+                                                <tbody>
 
-                                                                <% if (mark.module==module.nom &&
-                                                                    mark.etudiant==(student.prenom + " " + student.nom))
-                                                                    { %>
 
-                                                                    <span style="display: none;">
-                                                                        <%= a=true %>
-                                                                    </span>
-                                                                    <td>
-                                                                        <strong>
-                                                                            <%= mark.note %>
-                                                                        </strong>
-                                                                    </td>
-                                                                    <form action="./updatemark" method="post">
-                                                                        <input type="hidden" name="studentid"
-                                                                            value="<%= student._id %>">
-                                                                        <input type="hidden" name="note"
-                                                                            value="<%= mark.note%>">
-                                                                        <input type="hidden" name="nomModule"
-                                                                            value="<%= module.nom %>">
-                                                                        <td><button
-                                                                                class="btn btn-outline-secondary">Modifier
-                                                                                une note</button></td>
-                                                                    </form>
 
-                                                                    <% } %>
-                                                                        <% }) %>
 
-                                                                            <% if (a==false) { %>
-                                                                                <% for (let i=0; i < 100; i++) { %>
-                                                                                    <% if (i==99) { %>
-                                                                                        <td>
-                                                                                            <form action="./addmark"
+
+                                                    <% person.forEach(async student=> { %>
+                                                        <% if (module.classe.includes(student.filiere)) { %>
+                                                            <tr>
+                                                                <td><img src="static/uploads/images/<%= student.image %>"
+                                                                        class="rounded-circle" alt="Avatar"
+                                                                        style="width: 50px; height: 50px;"></td>
+                                                                <td>
+                                                                    <%=student.prenom + " " + student.nom %>
+                                                                </td>
+
+                                                                <span style="display: none;">
+                                                                    <%= a=false %>
+                                                                </span>
+                                                                <% notes.forEach(mark=> { %>
+
+                                                                    <% if (mark.module==module.nom &&
+                                                                        mark.etudiant==(student.prenom + " " +
+                                                                        student.nom)) { %>
+
+                                                                        <span style="display: none;">
+                                                                            <%= a=true %>
+                                                                        </span>
+                                                                        <td>
+                                                                            <strong>
+                                                                                <%= mark.note %>
+                                                                            </strong>
+                                                                        </td>
+                                                                        <form action="./updatemark" method="post">
+                                                                            <input type="hidden" name="studentid"
+                                                                                value="<%= student._id %>">
+                                                                            <input type="hidden" name="note"
+                                                                                value="<%= mark.note%>">
+                                                                            <input type="hidden" name="nomModule"
+                                                                                value="<%= module.nom %>">
+                                                                            <td><button
+                                                                                    class="btn btn-outline-secondary">Modifier
+                                                                                    une note</button></td>
+                                                                        </form>
+
+                                                                        <% } %>
+                                                                            <% }) %>
+
+                                                                                <% if (a==false) { %>
+                                                                                    <% for (let i=0; i < 100; i++) { %>
+                                                                                        <% if (i==99) { %>
+                                                                                            <td>
+                                                                                                <form action="./addmark"
+                                                                                                    method="post">
+                                                                                                    <input type="hidden"
+                                                                                                        name="studentid"
+                                                                                                        value="<%= student._id %>">
+                                                                                                    <input type="hidden"
+                                                                                                        name="nomModule"
+                                                                                                        value="<%= module.nom %>">
+                                                                                                    <button
+                                                                                                        class="btn btn-outline-primary">Attribuer
+                                                                                                        une
+                                                                                                        note</button>
+                                                                                                </form>
+                                                                                            </td>
+                                                                                            <form action="./updatemark"
                                                                                                 method="post">
                                                                                                 <input type="hidden"
                                                                                                     name="studentid"
                                                                                                     value="<%= student._id %>">
-                                                                                                <input type="hidden"
-                                                                                                    name="nomModule"
-                                                                                                    value="<%= module.nom %>">
-                                                                                                <button
-                                                                                                    class="btn btn-outline-primary">Attribuer
-                                                                                                    une
-                                                                                                    note</button>
+                                                                                                <td><button
+                                                                                                        class="btn btn-outline-secondary"
+                                                                                                        disabled>Modifier
+                                                                                                        une
+                                                                                                        note</button>
+                                                                                                </td>
                                                                                             </form>
-                                                                                        </td>
-                                                                                        <form action="./updatemark"
-                                                                                            method="post">
-                                                                                            <input type="hidden"
-                                                                                                name="studentid"
-                                                                                                value="<%= student._id %>">
-                                                                                            <td><button
-                                                                                                    class="btn btn-outline-secondary"
-                                                                                                    disabled>Modifier
-                                                                                                    une
-                                                                                                    note</button>
-                                                                                            </td>
-                                                                                        </form>
 
-                                                                                        <% } %>
                                                                                             <% } %>
                                                                                                 <% } %>
-                                                        </tr>
-                                                        <% } %>
-                                                            <% }) %>
-                                            </tbody>
-                                        </table>
+                                                                                                    <% } %>
+                                                            </tr>
+                                                            <% } %>
+                                                                <% }) %>
+
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+
+
                                     </div>
+
                                 </div>
+
                             </div>
+
                         </section>
                         <br />
                         <button class="btn btn-outline-primary"

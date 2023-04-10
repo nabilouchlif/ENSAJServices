@@ -433,7 +433,7 @@ body {
 .box-de .btn {
     margin-top: 25px;
     border-radius: 20px;
-    font-size: .8rem;
+    font-size: .9rem;
     width: 80px;
 }
 
@@ -441,8 +441,8 @@ body {
     margin-top: 25px;
     border-radius: 30px;
     font-size: 2rem;
-    width: max-content;
-    height: max-content;
+    width: 430px;
+    height: 170px;
 }
 
 .navigation-horizontal .submenu {
