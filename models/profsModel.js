@@ -33,7 +33,7 @@ const profSchema = new Schema({
         },
         role: {
             type: String,
-            default: "Professeur"
+            default: "professeur"
         }
     }
     , {timestamps: true})

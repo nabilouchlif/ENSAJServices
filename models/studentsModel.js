@@ -28,7 +28,7 @@ const studentSchema = new Schema({
         },
         role: {
             type: String,
-            default: "Etudiant"
+            default: "etudiant"
         }
     }
     , {timestamps: true})

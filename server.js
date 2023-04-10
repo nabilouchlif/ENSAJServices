@@ -54,7 +54,7 @@ app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use('/static1', express.static(path.join(__dirname, 'assets')))
 
 app.get('/', (req, res) => {
-    res.render('accueil', {
+    res.render('create', {
         existe: true,
         existingEmail: false,
         email: "",
@@ -74,15 +74,6 @@ app.get('/error', (req, res) => {
 
 app.get('/create', (req, res) => {
     res.render('create', {
-        existe: true,
-        existingEmail: false,
-        email: "",
-        pwd: "",
-    });
-})
-
-app.get('/accueil', (req, res) => {
-    res.render('accueil', {
         existe: true,
         existingEmail: false,
         email: "",
@@ -120,7 +111,7 @@ app.get('/signup', (req, res) => {
 })
 
 app.post('/updateProfile', upload.single('image'), async (req, res) => {
-    if (ourClient.role == "Etudiant") {
+    if (ourClient.role == "etudiant") {
         let user = req.body;
         Student.findByIdAndUpdate(user.userId,
             {
@@ -318,11 +309,11 @@ app.get('/profs', async (req, res) => {
                 global.isic1Students = 0;
                 global.isic2Students = 0;
                 result.forEach(student => {
-                    if (student.filiere == "2ITE-1") {
+                    if (student.filiere == "2ite1") {
                         global.iite1Students++;
-                    } else if (student.filiere == "2ITE-2") {
+                    } else if (student.filiere == "2ite2") {
                         global.iite2Students++;
-                    } else if (student.filiere == "ISIC-1") {
+                    } else if (student.filiere == "isic1") {
                         global.isic1Students++;
                     } else {
                         global.isic2Students++;
@@ -355,16 +346,16 @@ app.post('/addprof', (req, res) => {
     let classes = ""
 
     if (req.body.isic1 == "on") {
-        classes = classes + " ISIC-1 |"
+        classes = classes + " isic1 |"
     }
     if (req.body.isic2 == "on") {
-        classes = classes + " ISIC-2 |"
+        classes = classes + " isic2 |"
     }
     if (req.body._2ite1 == "on") {
-        classes = classes + " 2ITE-1 |"
+        classes = classes + " 2ite1 |"
     }
     if (req.body._2ite2 == "on") {
-        classes = classes + " 2ITE-2 |"
+        classes = classes + " 2ite2 |"
     }
     const prof = new Prof(
         {
@@ -518,16 +509,16 @@ app.post('/update_module_selected', (req, res) => {
     let classes = ""
 
     if (req.body.isic1 == "on") {
-        classes = classes + " ISIC-1 |"
+        classes = classes + " isic1 |"
     }
     if (req.body.isic2 == "on") {
-        classes = classes + " ISIC-2 |"
+        classes = classes + " isic2 |"
     }
     if (req.body._2ite1 == "on") {
-        classes = classes + " 2ITE-1 |"
+        classes = classes + " 2ite1 |"
     }
     if (req.body._2ite2 == "on") {
-        classes = classes + " 2ITE-2 |"
+        classes = classes + " 2ite2 |"
     }
 
     let module = req.body;
@@ -578,16 +569,16 @@ app.post('/addmodule', (req, res) => {
     let classes = ""
 
     if (req.body.isic1 == "on") {
-        classes = classes + " ISIC-1 |"
+        classes = classes + " isic1 |"
     }
     if (req.body.isic2 == "on") {
-        classes = classes + " ISIC-2 |"
+        classes = classes + " isic2 |"
     }
     if (req.body._2ite1 == "on") {
-        classes = classes + " 2ITE-1 |"
+        classes = classes + " 2ite1 |"
     }
     if (req.body._2ite2 == "on") {
-        classes = classes + " 2ITE-2 |"
+        classes = classes + " 2ite2 |"
     }
     const module = new Modules(
         {
@@ -618,7 +609,7 @@ app.post('/addmodule', (req, res) => {
 
 app.get('/notes', async (req, res) => {
     let listOfModules = []
-    if (ourClient.role == "Professeur") {
+    if (ourClient.role == "professeur") {
 
         await Modules.find()
             .then(result => {
@@ -660,7 +651,7 @@ app.get('/notes', async (req, res) => {
 })
 
 app.get('/notes', (req, res) => {
-    if (ourClient.role == "Professeur") {
+    if (ourClient.role == "professeur") {
         res.redirect('/notes');
     } else {
         res.render('error')
@@ -668,7 +659,7 @@ app.get('/notes', (req, res) => {
 })
 
 app.post('/addmark', (req, res) => {
-    if (ourClient.role == "Professeur") {
+    if (ourClient.role == "professeur") {
         const id = req.body.studentid;
         const moduleName = req.body.nomModule;
         Student.findById(id)
@@ -688,7 +679,7 @@ app.post('/addmark', (req, res) => {
 })
 
 app.post('/updatemark', (req, res) => {
-    if (ourClient.role == "Professeur") {
+    if (ourClient.role == "professeur") {
         const id = req.body.studentid;
         const moduleName = req.body.nomModule;
         const studentScore = req.body.note;
@@ -729,7 +720,7 @@ app.post('/validatemark', (req, res) => {
 
 
 app.get('/consulternote', (req, res) => {
-    if (ourClient.role = "Etudiant") {
+    if (ourClient.role = "etudiant") {
         let listOfValidMarks = [];
         Note.find()
             .then(result => {
@@ -784,7 +775,7 @@ app.post('/demandevoircopie', (req, res) => {
 })
 
 app.get('/demandes', (req, res) => {
-    if (ourClient.role == "Etudiant") {
+    if (ourClient.role == "etudiant") {
         res.render('demandes', {
             validmodule: [],
             person: ourClient,
@@ -829,7 +820,7 @@ app.post('/pdfdemande', (req, res, next) => {
 });
 
 app.get('/suivredemande', (req, res) => {
-    if (ourClient.role == "Etudiant") {
+    if (ourClient.role == "etudiant") {
         let listOfDemandes = []
         Demande.find()
             .then(result => {
@@ -851,7 +842,7 @@ app.get('/suivredemande', (req, res) => {
 })
 
 app.get('/certifscolarite', (req, res) => {
-    if (ourClient.role == "Etudiant") {
+    if (ourClient.role == "etudiant") {
         let Demandecertif = []
         Demande.find()
             .then(result => {
@@ -872,7 +863,7 @@ app.get('/certifscolarite', (req, res) => {
     }
 })
 app.get('/relevedenote', (req, res) => {
-    if (ourClient.role == "Etudiant") {
+    if (ourClient.role == "etudiant") {
         let Demandereleve = []
         Demande.find()
             .then(result => {
@@ -894,7 +885,7 @@ app.get('/relevedenote', (req, res) => {
 })
 
 app.get('/conventiondestage', (req, res) => {
-    if (ourClient.role == "Etudiant") {
+    if (ourClient.role == "etudiant") {
         let Demandeconvention = []
         Demande.find()
             .then(result => {
@@ -916,7 +907,7 @@ app.get('/conventiondestage', (req, res) => {
 })
 
 app.get('/lettrederecommendation', (req, res) => {
-    if (ourClient.role == "Etudiant") {
+    if (ourClient.role == "etudiant") {
         let Demanderecommandation = []
         Demande.find()
             .then(result => {
@@ -953,7 +944,7 @@ app.post('/deletedemande', (req, res) => {
 })
 
 app.get('/listedemandes', (req, res) => {
-    if (ourClient.role == "Professeur") {
+    if (ourClient.role == "professeur") {
         let listedesdemandes = [];
         Demande.find()
             .then(result => {

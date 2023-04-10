@@ -126,7 +126,7 @@
                     <ul id="sidebarnav">
                         <!-- User Profile-->
                         <% switch (ourClient.role) {
-                            case 'Etudiant' : %>
+                            case 'etudiant' : %>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="./index" aria-expanded="false">
                                 <i class="fa-regular fa-user"></i> <span class="hide-menu">&nbsp;&nbsp;&nbsp;Mon Profile</span></a>
@@ -141,7 +141,7 @@
 
                                     <% break;
                             
-                            case 'Professeur' : %>
+                            case 'professeur' : %>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="./index" aria-expanded="false">
                                 <i class="fa-regular fa-user"></i> <span class="hide-menu">&nbsp;&nbsp;&nbsp;Mon Profile</span></a>
@@ -270,7 +270,7 @@
                                     <% } else { %>
                                         <input type="hidden" value = "voir copie" name = "type">
                                     <% } %>
-                                    <input type="hidden" value = "<%= person.prenom + " " + person.nom %>" name = "Etudiant">
+                                    <input type="hidden" value = "<%= person.prenom + " " + person.nom %>" name = "etudiant">
                                     <div class="form-group">
                                         <label class="col-md-12 mb-0">Module</label>
                                         <div class="col-md-12">
