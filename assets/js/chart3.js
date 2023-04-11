@@ -2,7 +2,7 @@ var ctx = document.getElementById('barchart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['2IT1', '2ITE2', 'ISIC1', 'ISI2'],
+        labels: ['2ITE1', '2ITE2', 'ISIC1', 'ISIC2'],
         datasets: [{
             axis: 'y',
             label: 'Note moyenne',

@@ -2,7 +2,7 @@ var ctx = document.getElementById('piechart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'pie',
     data: {
-        labels: ['Feminin', 'Masculin'],
+        labels: ['Féminin', 'Masculin'],
         datasets: [{
             axis: 'y',
             label: 'Note moyenne',
