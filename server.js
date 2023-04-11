@@ -39,8 +39,7 @@ const port = process.env.PORT || 4041;
 mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.zohp9g7.mongodb.net/test"
 =======
 const port = process.env.PORT || 4040;
-mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.yokwiga.mongodb.net/test"
->>>>>>> parent of 8076fd5 (Revert "revert")
+mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.ox3qklg.mongodb.net/test"
 mongoose.connect(mongo_url)
     .then((res) => {
         app.listen(port);
