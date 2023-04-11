@@ -16,12 +16,12 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="static1/images/favicon.png">
     <!-- Custom CSS -->
-    <link href="static/style.min.css" rel="stylesheet">
+    <link href="public/style.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"> 
-    <link rel="stylesheet" href="/static/materialdesignicons.min.css">
-    <link rel="stylesheet" href="/static/material-design-iconic-font.css">
-    <link rel="stylesheet" href="/static/material-design-iconic-font.min.css">
-    <link rel="stylesheet" href="/static/spinners.css">
+    <link rel="stylesheet" href="/public/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/public/material-design-iconic-font.css">
+    <link rel="stylesheet" href="/public/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="/public/spinners.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -194,7 +194,7 @@ label.check input:checked + span {
                     <ul id="sidebarnav">
                         <!-- User Profile-->
                         <% switch (ourClient.role) {
-                            case 'etudiant' : %>
+                            case 'Etudiant' : %>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="./index" aria-expanded="false">
                                 <i class="fa-regular fa-user"></i> <span class="hide-menu">&nbsp;&nbsp;&nbsp;Mon Profile</span></a>
@@ -209,7 +209,7 @@ label.check input:checked + span {
 
                                     <% break;
                             
-                            case 'professeur' : %>
+                            case 'Professeur' : %>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="./index" aria-expanded="false">
                                 <i class="fa-regular fa-user"></i> <span class="hide-menu">&nbsp;&nbsp;&nbsp;Mon Profile</span></a>

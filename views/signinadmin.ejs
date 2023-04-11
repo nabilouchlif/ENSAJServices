@@ -15,12 +15,12 @@
                     <br>
                     <form action="/signinadmin" method="post">
                         <% if (!existe) { %>
-                            <small style="color: red;">email invalide</small>
+                            <small style="color: red;">Email invalide</small>
                             <div class="input-group mb-3">
                        
                                 <input type="text" class="form-control" placeholder="email" aria-label="Username" aria-describedby="basic-addon1" name="email" value = "<%= email %>" required>
                             </div>
-                            <small style="color: red;">mot de passe invalide</small>
+                            <small style="color: red;">Mot de passe invalide</small>
                             <div class="input-group mb-3">
                         
                                 <input type="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1" name="password" value="<%= pwd %>" required>
@@ -40,10 +40,13 @@
                     </div>
                     <% } %>
                     <div class="row no-margin">
-                        <p class="forget-p">mot de passe oublié ?</p>
+                        <p class="forget-p">Mot de passe oublié ?</p>
+                    </div>
+                    <div class="right-bkij mb-3">
+                        <button class="btn btn-success btn-round">S'identifier</button>
                     </div>
                     <div class="mb-3">
-                        <button class="btn btn-success btn-round" style="border-radius:5% ;">S'identifier</button>
+                        <a href="./accueil">Page d'accueil</a>
                     </div>
 
                 </form>
