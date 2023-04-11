@@ -35,7 +35,7 @@ const upload = multer({
     },
 });
 const port = process.env.PORT || 4040;
-mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.yokwiga.mongodb.net/test"
+mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.zohp9g7.mongodb.net/test"
 mongoose.connect(mongo_url)
     .then((res) => {
         app.listen(port);
