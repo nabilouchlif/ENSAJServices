@@ -21,7 +21,7 @@ function buildPDF(dataCallback, endCallback, demande) {
         .font('Times-Roman')
         .fontSize(15)
         .text(
-            "demandeur : " + demande.etudiant, {
+            "Demandeur : " + demande.etudiant, {
                 width: 410,
                 align: 'left'
             }
