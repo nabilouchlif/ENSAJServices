@@ -18,6 +18,10 @@ const studentSchema = new Schema({
             type: String,
             required: true
         },
+        cne: {
+            type: String,
+            required: true
+        },
         password: {
             type: String,
             required: true

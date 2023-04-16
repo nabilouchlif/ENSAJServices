@@ -10,6 +10,7 @@ const Note = require('./models/notesModel');
 const Demande = require('./models/demandesModel');
 const {result} = require('lodash');
 const pdfService = require('./services/pdf_services');
+const pdfCertif = require('./services/pdf_certif');
 const app = express();
 
 
@@ -34,8 +35,9 @@ const upload = multer({
         fieldSize: 1024 * 1024 * 3,
     },
 });
+
 const port = process.env.PORT || 4040;
-mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.zohp9g7.mongodb.net/test"
+mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.o6ytzzm.mongodb.net/test"
 mongoose.connect(mongo_url)
     .then((res) => {
         app.listen(port);
@@ -811,7 +813,7 @@ app.post('/pdfdemande', (req, res, next) => {
     );
     demande.save()
         .then(result => {
-            // alert("Demande envoyée avec succée!");
+            // alert("Demande envoyée avec succès!");
             // Generate a PDF
             const stream = res.writeHead(200, {
                 'Content-Type': 'application/pdf',
@@ -827,6 +829,40 @@ app.post('/pdfdemande', (req, res, next) => {
             console.log(err)
         })
 });
+
+app.post('/pdfcertif', (req, res, next) => {
+
+
+    // Sauvegarder la demande
+    const demande = new Demande(
+        {
+            type: req.body.type,
+            etudiant: req.body.etudiant,
+            professeur: req.body.professeur,
+            module: req.body.module,
+            message: req.body.message,
+            etat: "en attente"
+        }
+    );
+    demande.save()
+        .then(result => {
+            // alert("Certificat téléchargé avec succès!");
+            // Generate a PDF
+            const stream = res.writeHead(200, {
+                'Content-Type': 'application/pdf',
+                'Content-Disposition': `attachment;filename=invoice.pdf`,
+            });
+            pdfCertif.buildPDF(
+                (chunk) => stream.write(chunk),
+                () => stream.end(),
+                demande
+            );
+        })
+        .catch(err => {
+            console.log(err)
+        })
+});
+
 
 app.get('/suivredemande', (req, res) => {
     if (ourClient.role == "Etudiant") {
@@ -871,6 +907,8 @@ app.get('/certifscolarite', (req, res) => {
         res.render('error')
     }
 })
+
+
 app.get('/relevedenote', (req, res) => {
     if (ourClient.role == "Etudiant") {
         let Demandereleve = []
