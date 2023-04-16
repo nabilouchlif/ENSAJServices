@@ -35,7 +35,7 @@ const upload = multer({
     },
 });
 const port = process.env.PORT || 4040;
-mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.ox3qklg.mongodb.net/test"
+mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.xjh2x6v.mongodb.net/test"
 mongoose.connect(mongo_url)
     .then((res) => {
         app.listen(port);
@@ -54,7 +54,7 @@ app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use('/static1', express.static(path.join(__dirname, 'assets')))
 
 app.get('/', (req, res) => {
-    res.render('create', {
+    res.render('accueil', {
         existe: true,
         existingEmail: false,
         email: "",
