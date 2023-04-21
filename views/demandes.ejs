@@ -16,7 +16,6 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="static1/images/favicon.png">
     <!-- Custom CSS -->
-
     <link href="static/style.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="/static/materialdesignicons.min.css">
@@ -268,7 +267,7 @@
                                         <%= person.prenom + " " + person.nom %>
                                     </h4>
                                     <h6 class="card-subtitle">
-                                        <%= person.role %> à l'Ecole Nationale des Sciences Appliquées d'El Jadida
+                                        <%= person.role %> a l'école nationale des sciences appliquées d'el Jadida
                                     </h6>
 
                                     <div class="row text-center justify-content-center">
@@ -298,14 +297,14 @@
                     <div class="col-lg-8 col-xlg-9 col-md-7">
                         <div class="card">
                             <div class="card-body">
-                                <form class="form-horizontal form-material mx-2" action="/pdfdemande" method="post">
+                                <form class="form-horizontal form-material mx-2" action="./pdfdemande" method="post">
                                     <% if (recorrection) { %>
                                         <input type="hidden" value="recorrection" name="type">
                                         <% } else { %>
                                             <input type="hidden" value="voir copie" name="type">
                                             <% } %>
                                                 <input type="hidden" value="<%= person.prenom + " " + person.nom %>"
-                                                    name="Etudiant">
+                                                    name="etudiant">
                                                 <div class="form-group">
                                                     <label class="col-md-12 mb-0">Module</label>
                                                     <div class="col-md-12">
@@ -389,8 +388,7 @@
                                     </div> -->
                                                 <div class="form-group">
                                                     <div class="col-sm-12 d-flex">
-                                                        <button
-                                                            class="btn btn-success mx-auto mx-md-0 text-white">Valider</button>
+                                                        <button class="btn btn-success mx-auto mx-md-0 text-white">Valider</button>
                                                     </div>
                                                 </div>
                                 </form>

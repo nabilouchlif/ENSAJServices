@@ -1,16 +1,20 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const studentSchema = new Schema({
-        nom: {
+const certifSchema = new Schema({
+        etudiant: {
             type: String,
             required: true
         },
-        prenom: {
+        cin: {
             type: String,
             required: true
         },
-        filiere: {
+        cne: {
+            type: String,
+            required: true
+        },
+        telephone: {
             type: String,
             required: true
         },
@@ -18,20 +22,12 @@ const studentSchema = new Schema({
             type: String,
             required: true
         },
-        password: {
-            type: String,
+        datedepot: {
+            type: Date,
             required: true
-        },
-        image: {
-            type: String,
-            required: false
-        },
-        role: {
-            type: String,
-            default: "Etudiant"
         }
     }
     , {timestamps: true})
 
-const Student = mongoose.model('Student', studentSchema);
-module.exports = Student;
+const Certificat = mongoose.model('Certificat', certifSchema);
+module.exports = Certificat;
