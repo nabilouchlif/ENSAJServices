@@ -1,6 +1,6 @@
 const PDFDocument = require('pdfkit');
 
-function buildPDF(dataCallback, endCallback, demande) {
+function buildPDF(dataCallback, endCallback, certif, etudiant) {
     const doc = new PDFDocument({bufferPages: true, font: 'Courier'});
 
     doc.on('data', dataCallback);
@@ -32,7 +32,7 @@ function buildPDF(dataCallback, endCallback, demande) {
         .font('Times-Roman')
         .fontSize(15)
         .text(
-            "L'élève :" + demande.etudiant, {
+            "L'élève :" + certif.etudiant, {
                 width: 410,
                 align: 'left'
             }
@@ -42,7 +42,7 @@ function buildPDF(dataCallback, endCallback, demande) {
         .font('Times-Roman')
         .fontSize(15)
         .text(
-            "CNE : " + demande.etudiant.cne, {
+            "CNE : " + certif.cne, {
                 width: 410,
                 align: 'left'
             }
@@ -52,7 +52,7 @@ function buildPDF(dataCallback, endCallback, demande) {
         .font('Times-Roman')
         .fontSize(15)
         .text(
-            "Est inscrit(e) en " + demande.message, {
+            "Est inscrit(e) en Deuxième", {
                 width: 500,
                 align: 'justify'
             }
@@ -61,7 +61,7 @@ function buildPDF(dataCallback, endCallback, demande) {
         .font('Times-Roman')
         .fontSize(15)
         .text(
-            "année de la filière " + demande.etudiant.filiere, {
+            "année de la filière " + etudiant.filiere, {
                 width: 500,
                 align: 'justify'
             }
@@ -80,7 +80,7 @@ function buildPDF(dataCallback, endCallback, demande) {
         .font('Times-Roman')
         .fontSize(12)
         .text(
-            "Fait à El Jadida le : " + demande.timestamp, {
+            "Fait à El Jadida le : " + certif.datedepot, {
                 width: 410,
                 align: 'right'
             }

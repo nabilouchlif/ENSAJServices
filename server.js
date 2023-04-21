@@ -8,9 +8,10 @@ const Prof = require('./models/profsModel');
 const Modules = require('./models/modulesModel');
 const Note = require('./models/notesModel');
 const Demande = require('./models/demandesModel');
-const {result} = require('lodash');
+const { result } = require('lodash');
 const pdfService = require('./services/pdf_services');
 const pdfCertif = require('./services/pdf_certif');
+const Certificat = require('./models/certifsModel');
 const app = express();
 
 
@@ -51,7 +52,7 @@ app.set("view engine", "ejs");
 //app.set("views", "name of your views folder");
 
 app.use(express.static('public'))
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use('/static1', express.static(path.join(__dirname, 'assets')))
 
@@ -824,6 +825,7 @@ app.post('/pdfdemande', (req, res, next) => {
                 () => stream.end(),
                 demande
             );
+            console.log(req.body.demandeid);
         })
         .catch(err => {
             console.log(err)
@@ -834,23 +836,23 @@ app.post('/pdfcertif', (req, res, next) => {
 
 
     // Sauvegarder la demande
-    const demande = new Demande(
+    const certif = new Certificat(
         {
-            type: req.body.type,
             etudiant: req.body.etudiant,
-            professeur: req.body.professeur,
-            module: req.body.module,
-            message: req.body.message,
-            etat: "en attente"
+            cin: req.body.cin,
+            cne: req.body.cne,
+            telephone: req.body.telephone,
+            email: req.body.email,
+            datedepot: req.body.datedepot
         }
     );
-    demande.save()
+    certif.save()
         .then(result => {
             // alert("Certificat téléchargé avec succès!");
             // Generate a PDF
             const stream = res.writeHead(200, {
                 'Content-Type': 'application/pdf',
-                'Content-Disposition': `attachment;filename=invoice.pdf`,
+                'Content-Disposition': `attachment;filename=CertifScolari.pdf`,
             });
             pdfCertif.buildPDF(
                 (chunk) => stream.write(chunk),
@@ -889,15 +891,15 @@ app.get('/suivredemande', (req, res) => {
 app.get('/certifscolarite', (req, res) => {
     if (ourClient.role == "Etudiant") {
         let Demandecertif = []
-        Demande.find()
+        Certificat.find()
             .then(result => {
-                result.forEach(demande => {
-                    if (demande.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
-                        Demandecertif.push(demande);
+                result.forEach(certif => {
+                    if (certif.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
+                        Demandecertif.push(certif);
                     }
                 });
                 res.render('certifscolarite', {
-                    demandes: Demandecertif
+                    certifs: Demandecertif
                 })
             })
             .catch(err => {
@@ -1030,10 +1032,27 @@ app.post('/downloaddemande', (req, res) => {
         })
 })
 
+app.post('/downloadcertif', (req, res) => {
+    const id = req.body.certifid;
+    Certificat.findById(id)
+        .then(result => {
+            // Generate a PDF
+            const stream = res.writeHead(200, {
+                'Content-Type': 'application/pdf',
+                'Content-Disposition': `attachment;filename=invoice.pdf`,
+            });
+            pdfService.buildPDF(
+                (chunk) => stream.write(chunk),
+                () => stream.end(),
+                result
+            );
+        })
+})
+
 app.post('/professeurdecision', (req, res) => {
     const id = req.body.demandeid;
     console.log(id)
-    Demande.findByIdAndUpdate(id, {etat: req.body.decision},
+    Demande.findByIdAndUpdate(id, { etat: req.body.decision },
         function (err, docs) {
             if (err) {
                 console.log(err)
