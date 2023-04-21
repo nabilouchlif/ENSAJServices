@@ -453,8 +453,8 @@ body {
     margin-top: 25px;
     border-radius: 30px;
     font-size: 2rem;
-    width: max-content;
-    height: max-content;
+    width: 420px;
+    height: 150px;
 }
 
 .navigation-horizontal .submenu {
