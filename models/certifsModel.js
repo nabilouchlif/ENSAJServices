@@ -27,7 +27,7 @@ const certifSchema = new Schema({
             required: false
         }
     }
-    , {timestamps: true})
+    , {timestamps: false})
 
 const Certificat = mongoose.model('Certificat', certifSchema);
 module.exports = Certificat;
