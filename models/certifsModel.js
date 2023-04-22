@@ -4,27 +4,27 @@ const Schema = mongoose.Schema;
 const certifSchema = new Schema({
         etudiant: {
             type: String,
-            required: true
+            required: false
         },
         cin: {
             type: String,
-            required: true
+            required: false
         },
         cne: {
             type: String,
-            required: true
+            required: false
         },
         telephone: {
             type: String,
-            required: true
+            required: false
         },
         email: {
             type: String,
-            required: true
+            required: false
         },
         datedepot: {
             type: Date,
-            required: true
+            required: false
         }
     }
     , {timestamps: true})

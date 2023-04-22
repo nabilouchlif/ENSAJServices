@@ -852,12 +852,12 @@ app.post('/pdfcertif', (req, res, next) => {
             // Generate a PDF
             const stream = res.writeHead(200, {
                 'Content-Type': 'application/pdf',
-                'Content-Disposition': `attachment;filename=CertifScolari.pdf`,
+                'Content-Disposition': `attachment;filename=invoice.pdf`,
             });
             pdfCertif.buildPDF(
                 (chunk) => stream.write(chunk),
                 () => stream.end(),
-                demande
+                certif
             );
         })
         .catch(err => {
@@ -899,6 +899,7 @@ app.get('/certifscolarite', (req, res) => {
                     }
                 });
                 res.render('certifscolarite', {
+                    person: ourClient,
                     certifs: Demandecertif
                 })
             })

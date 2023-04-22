@@ -21,7 +21,7 @@ function buildPDF(dataCallback, endCallback, certif, etudiant) {
         .font('Times-Roman')
         .fontSize(15)
         .text(
-            "Le Directeur de l'Ecole Nationale des Sciences Appliquées d'El Jadida (ENSA-J), soussigné, atteste que :" + demande.etudiant, {
+            "Le Directeur de l'Ecole Nationale des Sciences Appliquées d'El Jadida (ENSA-J), soussigné, atteste que :" + certif.etudiant, {
                 width: 410,
                 align: 'left'
             }
@@ -61,7 +61,7 @@ function buildPDF(dataCallback, endCallback, certif, etudiant) {
         .font('Times-Roman')
         .fontSize(15)
         .text(
-            "année de la filière " + etudiant.filiere, {
+            "année de la filière ", {
                 width: 500,
                 align: 'justify'
             }
@@ -70,7 +70,7 @@ function buildPDF(dataCallback, endCallback, certif, etudiant) {
         .font('Times-Roman')
         .fontSize(15)
         .text(
-            "au titre de l'année universitaire 2022/2023, et poursuit ses études à l'Ecole Nationale des Sciences Appliquées." + demande.etudiant.filiere, {
+            "au titre de l'année universitaire 2022/2023, et poursuit ses études à l'Ecole Nationale des Sciences Appliquées.", {
                 width: 500,
                 align: 'justify'
             }
