@@ -63,7 +63,8 @@ textarea {
     cursor: pointer;
 }
 
-html, body {
+html,
+body {
     height: 100%;
 }
 
@@ -102,7 +103,12 @@ p {
     padding: 0px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: "mouse-500", Arial, Helvetica, sans-serif;
 }
 
@@ -447,16 +453,16 @@ body {
 
 .navigation-horizontal .submenu {
     background-color: #e2e2eb;
- margin-top: -6px;
- margin-right: 1px;
- margin-left: 1px;
+    margin-top: -6px;
+    margin-right: 1px;
+    margin-left: 1px;
 }
 
 .navigation-horizontal .submenu .nav .nav-item .nav-link {
- font-size: 12px;
- padding: 0px 12px;
- transition: 0.3s;
- line-height: 1;
+    font-size: 12px;
+    padding: 0px 12px;
+    transition: 0.3s;
+    line-height: 1;
 }
 
 

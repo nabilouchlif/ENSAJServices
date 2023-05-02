@@ -493,9 +493,22 @@
                   class="hide-menu">&nbsp;&nbsp;&nbsp;Consulter les notes</span></a>
             </li>
 
-            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                href="./suivredemande" aria-expanded="false"><i class="fa-solid fa-file-circle-question"></i><span
-                  class="hide-menu">&nbsp;&nbsp;&nbsp;Suivre demandes</span></a></li>
+            <li class="sidebar-item"> <a class="nav-link dropdown-toggle waves-effect waves-dark sidebar-link" href="#"
+                data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i
+                  class="fa-solid fa-file-circle-question"></i><span class="hide-menu">&nbsp;&nbsp;&nbsp;Suivre
+                  demandes</span></a></li>
+            <div id="submenu-2" class="collapse submenu">
+              <ul class="scroll-sidebar">
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                    href="./suivredemande" aria-expanded="false"><i class="fa-solid fa-school-circle-check"></i><span
+                      class="hide-menuu">&nbsp;&nbsp;&nbsp;Demandes de recorrection</span></a>
+                </li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                    href="./suivredemcert" aria-expanded="false"><i class="fa-solid fa-file-excel-o"></i><span
+                      class="hide-menuu">&nbsp;&nbsp;&nbsp;Demandes de documents</span></a>
+                </li>
+              </ul>
+            </div>
             <li class="sidebar-item"> <a class="nav-link dropdown-toggle waves-effect waves-dark sidebar-link" href="#"
                 data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i
                   class="fa-solid fa-person-chalkboard"></i><span class="hide-menu">&nbsp;&nbsp;&nbsp;Remplir
@@ -649,61 +662,60 @@
             <div id="container">
               <div class="card bg-white">
                 <div class="card-body container-fluid">
-                  <form class="form-horizontal form-material mx-2" action="./pdfcertif" method="post"
-                    enctype="application/x-www-form-urlencoded">
-                    <div class="row">
-                      <div class="form-group">
-                        <div class="col-sm-6 mb-2">
-                          <h3>
-                            <%= ourClient.prenom + " " + ourClient.nom %>
-                              <input type="hidden" value="<%= person.prenom + " " + person.nom %>" name="etudiant">
-                          </h3>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-6 mb-2">
-                          <label for="cin">CIN : </label> <input class="form-control ps-0 form-control-line" type="text"
-                            name="cin" required>
-                        </div>
+                  <div class="row">
+                    <div class="form-group">
+                      <div class="col-sm-6 mb-2">
+                        <h3>
+                          <%= ourClient.prenom + " " + ourClient.nom %>
+                            <input type="hidden" value="<%= person.prenom + " " + person.nom %>" name="etudiant">
+                        </h3>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="form-group">
-                        <div class="col-sm-6 mb-2">
-                          <label for="cne">CNE : </label> <input class="form-control ps-0 form-control-line" type="text"
-                            name="cne" required>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-6 mb-2">
-                          <label for="telephone">Tél : </label> <input class="form-control ps-0 form-control-line"
-                            type="text" name="telephone" required>
-                        </div>
+                    <div class="form-group">
+                      <div class="col-sm-6 mb-2">
+                        <label for="cin">CIN : </label> <input class="form-control ps-0 form-control-line" type="text"
+                          name="cin" required>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="form-group">
-                        <div class="col-sm-6 mb-2">
-                          <label for="email">Email : </label> <input class="form-control ps-0 form-control-line"
-                            type="email" name="email" value="<%= person.email %>" required>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-6 mb-2">
-                          <label for="datedepot">Date de dépôt : </label> <input
-                            class="form-control ps-0 form-control-line" type="date" name="datedepot" required>
-                        </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group">
+                      <div class="col-sm-6 mb-2">
+                        <label for="cne">CNE : </label> <input class="form-control ps-0 form-control-line" type="text"
+                          name="cne" required>
                       </div>
                     </div>
-                    <div class="row">
+                    <div class="form-group">
+                      <div class="col-sm-6 mb-2">
+                        <label for="telephone">Tél : </label> <input class="form-control ps-0 form-control-line"
+                          type="text" name="telephone" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group">
+                      <div class="col-sm-6 mb-2">
+                        <label for="email">Email : </label> <input class="form-control ps-0 form-control-line"
+                          type="email" name="email" value="<%= person.email %>" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-6 mb-2">
+                        <label for="datedepot">Date de dépôt : </label> <input
+                          class="form-control ps-0 form-control-line" type="date" name="datedepot" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <form action="./demandecertif" method="post">
                       <div class="form-group">
                         <div class="col">
-                          <button class="btn btn-success mx-auto mx-md-0 text-white">Télécharger la
+                          <button class="btn btn-success mx-auto mx-md-0 text-white">Demander la
                             certification</button>
                         </div>
                       </div>
-                    </div>
-                  </form>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>

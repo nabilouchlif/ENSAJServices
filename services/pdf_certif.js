@@ -62,7 +62,7 @@ function buildPDF(dataCallback, endCallback, certif) {
         .font('Times-Roman')
         .fontSize(12)
         .text(
-            "Fait à El Jadida le : " + certif.datedepot, {
+            "Fait à El Jadida le : " + certif.datedepot.toDateString(), {
             width: 410,
             align: 'right'
         }

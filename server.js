@@ -11,7 +11,9 @@ const Demande = require('./models/demandesModel');
 const { result } = require('lodash');
 const pdfService = require('./services/pdf_services');
 const pdfCertif = require('./services/pdf_certif');
+const pdfCervices = require('./services/pdf_cervices');
 const Certificat = require('./models/certifsModel');
+const Demcert = require('./models/demandeCertsModel');
 const app = express();
 
 
@@ -761,7 +763,9 @@ app.post('/demanderecorrection', (req, res) => {
             res.render('demandes', {
                 validmodule: result,
                 person: ourClient,
-                recorrection: true
+                recorrection: true,
+                voircopie: false,
+                certif: false
             })
         })
         .catch(err => {
@@ -778,7 +782,27 @@ app.post('/demandevoircopie', (req, res) => {
             res.render('demandes', {
                 validmodule: result,
                 person: ourClient,
-                recorrection: false
+                recorrection: false,
+                voircopie: true,
+                certif: false
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
+
+app.post('/demandecertif', (req, res) => {
+    const id = req.body.demcertid;
+
+    Demcert.findById(id)
+        .then(result => {
+            res.render('demandes', {
+                certif: result,
+                person: ourClient,
+                recorrection: false,
+                voircopie: false,
+                certif: true
             })
         })
         .catch(err => {
@@ -791,7 +815,8 @@ app.get('/demandes', (req, res) => {
         res.render('demandes', {
             validmodule: [],
             person: ourClient,
-            recorrection: true
+            recorrection: true,
+            voircopie: false
         })
     } else {
         res.render('error')
@@ -831,6 +856,41 @@ app.post('/pdfdemande', (req, res, next) => {
             console.log(err)
         })
 });
+
+app.post('/pdfcervice', (req, res, next) => {
+
+
+    // Sauvegarder la demande
+    const demcert = new Demcert(
+        {
+            type: req.body.type,
+            etudiant: req.body.etudiant,
+            cin: req.body.cin,
+            cne: req.body.cne,
+            message: req.body.message,
+            etat: "en attente"
+        }
+    );
+    demcert.save()
+        .then(result => {
+            // alert("Demande envoyée avec succès!");
+            // Generate a PDF
+            const stream = res.writeHead(200, {
+                'Content-Type': 'application/pdf',
+                'Content-Disposition': `attachment;filename=invoice.pdf`,
+            });
+            pdfService.buildPDF(
+                (chunk) => stream.write(chunk),
+                () => stream.end(),
+                demcert
+            );
+            console.log(req.body.demcertid);
+        })
+        .catch(err => {
+            console.log(err)
+        })
+});
+
 
 app.post('/pdfcertif', (req, res, next) => {
 
@@ -878,6 +938,28 @@ app.get('/suivredemande', (req, res) => {
                 });
                 res.render('suivredemande', {
                     demandes: listOfDemandes
+                })
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    } else {
+        res.render('error')
+    }
+})
+
+app.get('/suivredemcert', (req, res) => {
+    if (ourClient.role == "Etudiant") {
+        let listOfDemcerts = []
+        Demcert.find()
+            .then(result => {
+                result.forEach(demcert => {
+                    if (demcert.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
+                        listOfDemcerts.push(demcert);
+                    }
+                });
+                res.render('suivredemcert', {
+                    demcerts: listOfDemcerts
                 })
             })
             .catch(err => {
@@ -993,6 +1075,20 @@ app.post('/deletedemande', (req, res) => {
         })
 })
 
+app.post('/deletedemcert', (req, res) => {
+    const id = req.body.demcertid;
+    Demcert.findByIdAndDelete(id)
+        .then(() => {
+            Demcert.find()
+                .then((result) => {
+                    res.redirect('suivredemcert');
+                })
+        })
+        .catch(err => {
+            console.log(err);
+        })
+})
+
 app.get('/listedemandes', (req, res) => {
     if (ourClient.role == "Professeur") {
         let listedesdemandes = [];
@@ -1011,6 +1107,26 @@ app.get('/listedemandes', (req, res) => {
                 console.log(err)
             })
 
+    } else {
+        res.render('error')
+    }
+})
+
+app.get('/listedesdemandes', (req, res) => {
+    if (ourClient.role == "Cordinateur") {
+        let listedesdemcerts = [];
+        Demcert.find()
+            .then(result => {
+                result.forEach(demcert => {
+                    listedesdemcerts.push(demcert);
+                });
+                res.render('listedesdemandes', {
+                    demcerts: listedesdemcerts
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
     } else {
         res.render('error')
     }
@@ -1062,6 +1178,20 @@ app.post('/professeurdecision', (req, res) => {
             }
         });
     res.redirect('listedemandes')
+})
+
+app.post('/admindecision', (req, res) => {
+    const id = req.body.demcertid;
+    console.log(id)
+    Demcert.findByIdAndUpdate(id, { etat: req.body.decision },
+        function (err, docs) {
+            if (err) {
+                console.log(err)
+            } else {
+                console.log("Updated demande : ", docs);
+            }
+        });
+    res.redirect('listedesdemandes')
 })
 
 app.get('/dash', async (req, res) => {

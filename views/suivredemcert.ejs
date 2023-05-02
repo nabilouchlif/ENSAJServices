@@ -470,7 +470,7 @@
               <tr>
 
                 <th>Type</th>
-                <th>Module</th>
+                <th>CNE</th>
                 <th>Etat</th>
                 <!-- <th>Status</th> -->
                 <th>Action</th>
@@ -478,30 +478,30 @@
             </thead>
 
             <tbody>
-              <% demandes.forEach(demande=> { %>
+              <% demcerts.forEach(demcert=> { %>
 
 
                 <tr>
 
 
                   <td>
-                    <%= demande.type %>
+                    <%= demcert.type %>
                   </td>
                   <td>
-                    <%= demande.module %>
+                    <%= demcert.cne %>
                   </td>
 
-                  <% switch (demande.etat) { case 'en attente' : %>
+                  <% switch (demcert.etat) { case 'en attente' : %>
                     <td style="color: rgb(227, 177, 40);">
-                      <%= demande.etat %>
+                      <%= demcert.etat %>
                     </td>
-                    <% break; case 'approuvée' : %>
+                    <% break; case 'Approuvée' : %>
                       <td style="color: rgb(96, 230, 33);">
-                        <%= demande.etat %>
+                        <%= demcert.etat %>
                       </td>
-                      <% break; case 'non approuvée' : %>
+                      <% break; case 'Non approuvée' : %>
                         <td style="color: rgb(233, 33, 30);">
-                          <%= demande.etat %>
+                          <%= demcert.etat %>
                         </td>
                         <% break; } %>
 
@@ -513,8 +513,8 @@
                                       </div>
                                   </td> -->
                           <td>
-                            <form action="/deletedemande" method="post">
-                              <input type="hidden" name="demandeid" value="<%= demande._id %>">
+                            <form action="/deletedemcert" method="post">
+                              <input type="hidden" name="demcertid" value="<%= demcert._id %>">
                               <button class="delete" title="Delete" data-toggle="tooltip" style="border: white;"><i
                                   class="fa-regular fa-trash-can" style="color: rgb(226, 72, 72);"></i></button>
                             </form>
