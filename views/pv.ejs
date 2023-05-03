@@ -11,7 +11,7 @@
   <meta name="description"
     content="Material Pro Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
   <meta name="robots" content="noindex,nofollow">
-  <title>Enseignants</title>
+  <title>Modules</title>
   <link rel="canonical" href="https://www.wrappixel.com/templates/materialpro-lite/" />
   <!-- Favicon icon -->
   <link rel="icon" type="image/png" sizes="16x16" href="static1/images/favicon.png">
@@ -108,50 +108,29 @@
       color: #fff;
     }
 
-    .progress-bar {
-      display: -ms-flexbox;
-      display: -webkit-box;
-      display: flex;
-      -ms-flex-direction: column;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      flex-direction: column;
-      -ms-flex-pack: center;
-      -webkit-box-pack: center;
-      justify-content: center;
-      overflow: hidden;
-      color: #fff;
+    .auto-style1 {
+      border: 2px solid #000000;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10pt;
+      border-collapse: collapse;
+    }
+
+    .auto-style8 {
+      border: 2px solid #000000;
+      background-color: #391d9e;
       text-align: center;
-      white-space: nowrap;
-      background-color: #007bff;
-      -webkit-transition: width .6s ease;
-      transition: width .6s ease;
+
     }
 
-    .bg-success {
-      background-color: #54ca68 !important;
-    }
+    .cellule {
+      border: 2px solid #000000;
+      text-align: center;
+      height: 70px;
+      width: 240px;
 
-    .bg-purple {
-      background-color: #9c27b0 !important;
-      color: #fff;
-    }
-
-    .bg-cyan {
-      background-color: #10cfbd !important;
-      color: #fff;
-    }
-
-    .bg-red {
-      background-color: #f44336 !important;
-      color: #fff;
-    }
-
-    .progress {
-      -webkit-box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.15);
-      box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.15);
     }
   </style>
+
 </head>
 
 <body>
@@ -249,7 +228,7 @@
           <br>
           <ul id="sidebarnav">
             <!-- User Profile-->
-            <% switch (ourClient.role) { case 'etudiant' : %>
+            <% switch (ourClient.role) { case 'Etudiant' : %>
               <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="./index"
                   aria-expanded="false">
                   <i class="fa-regular fa-user"></i> <span class="hide-menu">&nbsp;&nbsp;&nbsp;Mon Profile</span></a>
@@ -287,20 +266,19 @@
                     aria-expanded="false">
                     <i class="fa-regular fa-user"></i> <span class="hide-menu">&nbsp;&nbsp;&nbsp;Mon Profile</span></a>
                 </li>
-                <li class="sidebar-item"> <a class="active waves-effect waves-dark sidebar-link" href="./profs"
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="./profs"
                     aria-expanded="false"><i class="fa-solid fa-person-chalkboard"></i><span
                       class="hide-menu">&nbsp;&nbsp;&nbsp;Professeurs</span></a></li>
 
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                    href="./etudiants" aria-expanded="false"><i class="fa-solid fa-graduation-cap"></i><span
+                <li class="sidebar-item"> <a class="waves-effect waves-dark sidebar-link" href="./etudiants"
+                    aria-expanded="false"><i class="fa-solid fa-graduation-cap"></i><span
                       class="hide-menu">&nbsp;&nbsp;&nbsp;Etudiants & Profs</span></a></li>
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="./modules"
+                <li class="sidebar-item"> <a class="active waves-effect waves-dark sidebar-link" href="./modules"
                     aria-expanded="false"><i class="fa-solid fa-book-open-reader"></i><span
                       class="hide-menu">&nbsp;&nbsp;&nbsp;Modules</span></a>
                 </li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="./gestionpv" aria-expanded="false"><i
-                      class="fa-solid fa-book-open-reader"></i><span
+                    href="./gestionpv" aria-expanded="false"><i class="fa-solid fa-file-lines"></i><span
                       class="hide-menu">&nbsp;&nbsp;&nbsp;Gestion des PV</span></a>
                 </li>
                 <% break; } %>
@@ -417,255 +395,260 @@
               </div>
             </div> -->
     <!-- Page content -->
-
-
     <div class="container-xl">
       <div class="table-responsive">
         <div class="table-wrapper">
           <div class="table-title">
             <div class="row">
               <div class="col-sm-5">
-                <h2>Gestion des <b>Enseignants</b></h2>
-              </div>
-              <div class="col-sm-7">
-                <a href="./addprof" class="btn btn-secondary"><i class="material-icons"></i> <span>Ajouter un
-                    professeur</span></a>
-                <div class="search-box">
-                  <i class="material-icons"></i>
-                  <input type="text" class="form-control" placeholder="Search…">
-                </div>
+                <h2><b>Gestion des PV</b></h2>
               </div>
             </div>
           </div>
-          <table class="table table-striped table-hover">
-            <thead>
-              <tr>
+          <div align="center">
+            <br>
 
-                <th style="width: 1%;">Image</th>
-                <th>Nom complet</th>
-                <th>Classes</th>
-                <th>Accomplissement</th>
-                <th style="width: 1%;">Modifier</th>
-                <th style="width: 1%;">Supprimer</th>
-              </tr>
-            </thead>
 
-            <tbody>
-              <% profs.forEach(prof=> { %>
+            <table class="auto-style1" style="width: 982px">
+
+
+
+              <tbody>
+                <tr>
+                  <td class="auto-style8"><strong></strong></td>
+                  <td class="auto-style8"><strong>09h00 - 10h30</strong></td>
+                  <td class="auto-style8"><strong>10h45 - 12h15</strong></td>
+                  <td class="auto-style8"><strong>13h00 - 14h30</strong></td>
+                  <td class="auto-style8"><strong>14h45 - 16h15</strong></td>
+                </tr>
+
+
 
 
                 <tr>
+                  <td class="auto-style8"><strong>Lu</strong></td>
 
-                  <td style="width: 1%;"><img src="static/uploads/images/<%= prof.image %>" class="avatar" alt="Avatar">
-                  </td>
-                  <td>
-                    <%= prof.nom %>
-                      <%= prof.prenom %>
-                  </td>
-                  <td>
-                    <label class="check">
-                      <input type="checkbox" name="_2ite1" disabled>
-                      <span>
-                        <%= prof.classes %>
-                      </span>
-                    </label>
+                  <td class="cellule">
+
                   </td>
 
 
-                  <span style="display: none;">
-                    <%= allstudents=0 %>
-                  </span>
-                  <% if (prof.classes.includes('2ITE-1')) { %>
-                    <span style="display: none;">
-                      <%= allstudents=allstudents + iite1Students %>
-                    </span>
-                    <% } %>
-                      <% if (prof.classes.includes('2ITE-2')) { %>
-                        <span style="display: none;">
-                          <%= allstudents=allstudents + iite2Students %>
-                        </span>
-                        <% } %>
-                          <% if (prof.classes.includes('ISIC-1')) { %>
-                            <span style="display: none;">
-                              <%= allstudents=allstudents + isic1Students %>
-                            </span>
-                            <% } %>
-                              <% if (prof.classes.includes('ISIC-2')) { %>
-                                <span style="display: none;">
-                                  <%= allstudents=allstudents + isic2Students %>
-                                </span>
-                                <% } %>
-
-                                  <span style="display: none;">
-                                    <%= copiesCorrigees=0 %>
-                                  </span>
-                                  <% notes.forEach(note=> { %>
-                                    <% if (note.professeur==(prof.prenom + " " + prof.nom)) { %>
-                                      <span style="display: none;">
-                                        <%= copiesCorrigees++ %>
-                                      </span>
-                                      <% } %>
-                                        <% }) %>
-
-                                          <% if (allstudents==0) { %>
-                                            <span style="display: none;">
-                                              <%= accompli=0 %>
-                                            </span>
-                                            <% } else { %>
-                                              <span style="display: none;">
-                                                <%= accompli=((copiesCorrigees/allstudents) * 100).toFixed(2) %>
-                                              </span>
-                                              <% } %>
 
 
-                                                <% if (accompli < 30) { %>
-                                                  <td class="align-middle">
-                                                    <center>
-                                                      <div class="progress-text">
-                                                        <%= accompli %> %
-                                                      </div>
-                                                    </center>
-                                                    <div class="progress" data-height="6" style="height: 6px;">
-                                                      <div class="progress-bar bg-red" data-width="50%"
-                                                        style="width: <%= accompli.toString() %>%;"></div>
-                                                    </div>
-                                                  </td>
-                                                  <% } else if (accompli < 80){ %>
-                                                    <td class="align-middle">
-                                                      <center>
-                                                        <div class="progress-text">
-                                                          <%= accompli %> %
-                                                        </div>
-                                                      </center>
-                                                      <div class="progress" data-height="6" style="height: 6px;">
-                                                        <div class="progress-bar bg-yellow" data-width="50%"
-                                                          style="width: <%= accompli.toString() %>%;"></div>
-                                                      </div>
-                                                    </td>
-                                                    <% } else { %>
-                                                      <td class="align-middle">
-                                                        <center>
-                                                          <div class="progress-text">
-                                                            <%= accompli %> %
-                                                          </div>
-                                                        </center>
-                                                        <div class="progress" data-height="6" style="height: 6px;">
-                                                          <div class="progress-bar bg-success" data-width="50%"
-                                                            style="width: <%= accompli.toString() %>%;"></div>
-                                                        </div>
-                                                      </td>
-                                                      <% } %>
+                  <td class="cellule">
 
-                                                        <td style="width: 1%;">
-                                                          <form action="/update" method="post">
-                                                            <input type="hidden" name="profid" value="<%= prof._id %>">
-                                                            <button href="#" class="settings" title="Settings"
-                                                              data-toggle="tooltip" style="border: white;"><i
-                                                                class="fa-solid fa-pen"
-                                                                style="color:rgb(232, 196, 87) ;"></i></button>
-                                                          </form>
-                                                        </td>
-                                                        <td style="width: 1%;">
-                                                          <form action="/deleteprof" method="post">
-                                                            <input type="hidden" name="profid" value="<%= prof._id %>">
-                                                            <button class="delete" title="Delete" data-toggle="tooltip"
-                                                              style="border: white;"><i class="fa-regular fa-trash-can"
-                                                                style="color: rgb(235, 35, 35);"></i></button>
-                                                          </form>
-                                                        </td>
+
+                  </td>
+
+
+
+
+                  <td class="cellule">
+
+
+
+                  </td>
+
+
+
+
+                  <td class="cellule">
+
+
+
+
+                  </td>
+
+
+
                 </tr>
-                <% }) %>
-                  <!-- <tr>
-                                    
-                                    <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"> </td>
-                                    <td>Fouad Kharroubi </td>                       
-                                    <td>Publisher</td>
-                                    <td><span class="status text-success">•</span> Active</td>
-                                    <td>
-                                        <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                    </td>
-                                </tr>
-                                <tr> -->
+                <tr>
+                  <td class="auto-style8"><strong>Ma</strong></td>
 
-                  <!-- <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"> </td>
-                                    <td>Lachgar Mohamed</td>
-                                    <td>Publisher</td>
-                                    <td><span class="status text-danger">•</span> Suspended</td>                        
-                                    <td>
-                                        <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                    </td>                        
-                                </tr>
-                                <tr> -->
 
-                  <!-- <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"> </td>
-                                    <td>Hannani Asmae</td>
-                                    <td>Reviewer</td>
-                                    <td><span class="status text-success">•</span> Active</td>
-                                    <td>
-                                        <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                    </td>
-                                </tr> -->
-                  <!-- <tr>
-                                    
-                                    <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"> </td>
-                                    <td>Mohamed Fertat</td>                        
-                                    <td>Moderator</td>
-                                    <td><span class="status text-warning">•</span> Inactive</td>
-                                    <td>
-                                        <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                    </td>
-                                </tr> -->
-            </tbody>
-          </table>
-          <div class="clearfix">
-            <!-- <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div> -->
-            <ul class="pagination">
-              <li class="page-item disabled"><a href="#">Previous</a></li>
-              <li class="page-item active"><a href="#" class="page-link">1</a></li>
-              <li class="page-item"><a href="#" class="page-link">2</a></li>
-              <li class="page-item"><a href="#" class="page-link">3</a></li>
-              <li class="page-item"><a href="#" class="page-link">4</a></li>
-              <li class="page-item"><a href="#" class="page-link">5</a></li>
-              <li class="page-item"><a href="#" class="page-link">Next</a></li>
-            </ul>
+
+                  <td class="cellule">
+                    <a href=""><strong>Ing. Réseaux et Informatique de l'Entreprise</strong>&nbsp;(Pr. Aqqal)<br>S01-S14 [B2/TP A6]</a>
+                </td>
+
+
+
+
+                  <td class="cellule">
+
+
+                    <strong>Ing. Réseaux et Informatique de l'Entreprise</strong>&nbsp;(Pr.Aqqal)<br>S01-S07 [B2/TP
+                    A6]
+                    <hr color="gray" align="center" style="height: 0px"><strong>TP Ing. Réseaux et Info.de
+                      l'Entreprise</strong>&nbsp;(Pr.Aqqal)<br>S08-S14 [B2/TP A6]
+
+                  </td>
+
+
+
+
+                  <td class="cellule">
+
+
+                    <strong>Comm Sans-fil: Principes et Applications</strong>&nbsp;(Pr Haidine)<br>S01-S14 [B2]
+
+                  </td>
+
+
+
+
+                  <td class="cellule">
+
+
+                    <strong>Comm Sans-fil: Principes et Applications</strong>&nbsp;(Pr Haidine)<br>S01-S14 [B2]
+
+                  </td>
+
+
+
+                </tr>
+                <tr>
+                  <td class="auto-style8"><strong>Me</strong></td>
+
+
+
+                  <td class="cellule">
+
+
+                    <strong>Sécurité des Réseaux</strong>&nbsp;(Pr KARTIT)<br>S01-S07 [B2]
+                    <hr color="gray" align="center" style="height: 0px"><strong>Techniques de
+                      Créativité</strong>&nbsp;(Pr Haidine)<br>S08-S14 [B2]
+
+                  </td>
+
+
+
+
+                  <td class="cellule">
+
+
+                    <strong>Sécurité des Réseaux</strong>&nbsp;(Pr KARTIT)<br>S01-S07 [B2]
+                    <hr color="gray" align="center" style="height: 0px"><strong>TP Ing. Réseaux et Info.de
+                      l'Entreprise</strong>&nbsp;(Pr.Aqqal)<br>S08-S14 [B2/TP A6]
+
+                  </td>
+
+
+
+
+                  <td class="cellule">
+
+
+                    <strong>Outils d'Aide a la Décision</strong>&nbsp;(Pr Haidine)<br>S01-S07 [B2]
+                    <hr color="gray" align="center" style="height: 0px"><strong>Techniques de
+                      Créativité</strong>&nbsp;(Pr Haidine)<br>S08-S14 [B2]
+
+                  </td>
+
+                  <td class="cellule">
+                    <strong>Outils d'Aide a la Décision</strong>&nbsp;(Pr Haidine)<br>S01-S07 [B2]
+                  </td>
+
+                </tr>
+                <tr>
+                  <td class="auto-style8"><strong>Je</strong></td>
+
+                  <td class="cellule">
+                    <strong>Codage correcteur</strong>&nbsp;(Pr. El Hassani)<br>S01-S14 [B2]
+                  </td>
+
+                  <td class="cellule">
+
+                    <strong>Codage correcteur</strong>&nbsp;(Pr. El Hassani)<br>S01-S14 [B2]
+
+                  </td>
+
+                  <td class="cellule">
+
+                    <strong>Codage correcteur (TP Groupes)</strong>&nbsp;(Pr. El Hassani)<br>S04-S14 [B2]
+
+                  </td>
+
+                  <td class="cellule" bgcolor="#FFEECC">
+
+                  </td>
+
+                </tr>
+                <tr>
+                  <td class="auto-style8"><strong>Ve</strong></td>
+
+                  <td class="cellule">
+                    <strong>Développement Multiplateformes</strong>&nbsp;(Prof. Bousmah)<br>S01-S14 [B2]
+                  </td>
+
+                  <td class="cellule">
+                    <strong>Développement Multiplateformes</strong>&nbsp;(Prof. Bousmah)<br>S01-S14 [B2]
+                  </td>
+
+                  <td class="cellule" bgcolor="#FFEECC">
+                  </td>
+
+                  <td class="cellule" bgcolor="#FFEECC">
+                  </td>
+                </tr>
+                <tr>
+                  <td class="auto-style8"><strong>Sa</strong></td>
+                  <td class="cellule">
+                    <strong>Gestion et analyse des projets (9H-12H20)</strong>&nbsp;(M. Aitfares)<br>S01-S14 [C11]
+                  </td>
+                  <td class="cellule">
+                    <strong>Gestion et analyse des projets (9H-12H20)</strong>&nbsp;(M. Aitfares)<br>S01-S14 [C11]
+                  </td>
+                  <td class="cellule" bgcolor="#FFEECC">
+                  </td>
+                  <td class="cellule" bgcolor="#FFEECC">
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+
+
+
+            <br>
           </div>
         </div>
       </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- End Container fluid  -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- footer -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- End footer -->
-    <!-- ============================================================== -->
-  </div>
-  <!-- ============================================================== -->
-  <!-- End Page wrapper  -->
-  <!-- ============================================================== -->
-  </div>
+      
+      
+          <!-- ============================================================== -->
+          <!-- End Container fluid  -->
+          <!-- ============================================================== -->
+          <!-- ============================================================== -->
+          <!-- footer -->
+          <!-- ============================================================== -->
+          <footer class="footer"> © 2022 ENSAJ
+          </footer>
+          <!-- ============================================================== -->
+          <!-- End footer -->
+          <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+      </div>
 
 
 
 
 
 
-  <script src="/static1/js/jquery.min.js"></script>
-  <!-- Bootstrap tether Core JavaScript -->
-  <script src="/static1/js/bootstrap.bundle.min.js"></script>
-  <script src="/static1/js/app-style-switcher.js"></script>
-  <!--Wave Effects -->
-  <script src="/static1/js/waves.js"></script>
-  <!--Menu sidebar -->
-  <script src="/static1/js/sidebarmenu.js"></script>
-  <!--Custom JavaScript -->
-  <script src="/static1/js/custom.js"></script>
+      <script src="/static1/js/jquery.min.js"></script>
+      <!-- Bootstrap tether Core JavaScript -->
+      <script src="/static1/js/bootstrap.bundle.min.js"></script>
+      <script src="/static1/js/app-style-switcher.js"></script>
+      <!--Wave Effects -->
+      <script src="/static1/js/waves.js"></script>
+      <!--Menu sidebar -->
+      <script src="/static1/js/sidebarmenu.js"></script>
+      <!--Custom JavaScript -->
+      <script src="/static1/js/custom.js"></script>
 
 
 </body>
