@@ -499,7 +499,7 @@
                     </td>
                     <% break; case 'Approuvée' : %>
                       <td>
-                        <form action="/downloadcertif" method="post">
+                        <form action="/pdfcertif" method="post">
                           <input type="hidden" name="demcertid" value="<%= demcert._id %>">
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="" title="Telecharger la demande"
                             data-toggle="tooltip" style="border: white;"><i class="fa-solid fa-download"
