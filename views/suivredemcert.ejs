@@ -491,24 +491,27 @@
                   <td>
                     <%= demcert.cne %>
                   </td>
-                  <td>
-                    <form action="/downloadcertif" method="post">
-                      <input type="hidden" name="demcertid" value="<%= demcert._id %>">
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="" title="Telecharger la demande"
-                        data-toggle="tooltip" style="border: white;"><i class="fa-solid fa-download"
-                          style="color:rgb(97, 145, 212) ;"></i></button>
-                    </form>
 
-                  </td>
                   <% switch (demcert.etat) { case 'en attente' : %>
+                    <td></td>
                     <td style="color: rgb(227, 177, 40);">
                       <%= demcert.etat %>
                     </td>
                     <% break; case 'Approuvée' : %>
+                      <td>
+                        <form action="/downloadcertif" method="post">
+                          <input type="hidden" name="demcertid" value="<%= demcert._id %>">
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="" title="Telecharger la demande"
+                            data-toggle="tooltip" style="border: white;"><i class="fa-solid fa-download"
+                              style="color:rgb(97, 145, 212) ;"></i></button>
+                        </form>
+
+                      </td>
                       <td style="color: rgb(96, 230, 33);">
                         <%= demcert.etat %>
                       </td>
                       <% break; case 'Non approuvée' : %>
+                        <td></td>
                         <td style="color: rgb(233, 33, 30);">
                           <%= demcert.etat %>
                         </td>
