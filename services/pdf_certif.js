@@ -1,4 +1,6 @@
 const PDFDocument = require('pdfkit');
+const moment = require('moment');
+const currentDate = moment().format('DD/MM/YYYY');
 
 function buildPDF(dataCallback, endCallback, demcert) {
     const doc = new PDFDocument({ bufferPages: true, font: 'Courier' });
@@ -62,7 +64,7 @@ function buildPDF(dataCallback, endCallback, demcert) {
         .font('Times-Roman')
         .fontSize(12)
         .text(
-            "Fait à El Jadida le : " + demcert.datedepot, {
+            "Fait à El Jadida le : " + currentDate, {
             width: 410,
             align: 'right'
         }
