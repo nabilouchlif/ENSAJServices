@@ -227,10 +227,27 @@
                                         class="hide-menu">&nbsp;&nbsp;&nbsp;Consulter les notes</span></a>
                             </li>
 
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                    href="./suivredemande" aria-expanded="false"><i
-                                        class="fa-solid fa-file-circle-question"></i><span
+                            <li class="sidebar-item"> <a
+                                    class="nav-link dropdown-toggle waves-effect waves-dark sidebar-link" href="#"
+                                    data-toggle="collapse" aria-expanded="false" data-target="#submenu-2"
+                                    aria-controls="submenu-2"><i class="fa-solid fa-file-circle-question"></i><span
                                         class="hide-menu">&nbsp;&nbsp;&nbsp;Suivre demandes</span></a></li>
+                            <div id="submenu-2" class="collapse submenu">
+                                <ul class="scroll-sidebar">
+                                    <li class="sidebar-item"> <a
+                                            class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            href="./suivredemande" aria-expanded="false"><i
+                                                class="fa-solid fa-school-circle-check"></i><span
+                                                class="hide-menuu">&nbsp;&nbsp;&nbsp;Demandes de recorrection</span></a>
+                                    </li>
+                                    <li class="sidebar-item"> <a
+                                            class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            href="./suivredemcert" aria-expanded="false"><i
+                                                class="fa-solid fa-file-excel-o"></i><span
+                                                class="hide-menuu">&nbsp;&nbsp;&nbsp;Demandes de documents</span></a>
+                                    </li>
+                                </ul>
+                            </div>
 
                             <% break; case 'Professeur' : %>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
@@ -248,27 +265,36 @@
                                         href="./listedemandes" aria-expanded="false"><i
                                             class="fa-solid fa-list-check"></i><span
                                             class="hide-menu">&nbsp;&nbsp;&nbsp;Liste des demandes</span></a>
-                                    <% break; case 'Cordinateur' : %>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="./index" aria-expanded="false">
-                                        <i class="fa-regular fa-user"></i> <span class="hide-menu">&nbsp;&nbsp;&nbsp;Mon
-                                            Profile</span></a>
                                 </li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="./profs" aria-expanded="false"><i
-                                            class="fa-solid fa-person-chalkboard"></i><span
-                                            class="hide-menu">&nbsp;&nbsp;&nbsp;Professeurs</span></a></li>
+                                <% break; case 'Cordinateur' : %>
+                                    <li class="sidebar-item"> <a
+                                            class="sidebar-link waves-effect waves-dark sidebar-link" href="./index"
+                                            aria-expanded="false">
+                                            <i class="fa-regular fa-user"></i> <span
+                                                class="hide-menu">&nbsp;&nbsp;&nbsp;Mon
+                                                Profile</span></a>
+                                    </li>
+                                    <li class="sidebar-item"> <a
+                                            class="sidebar-link waves-effect waves-dark sidebar-link" href="./profs"
+                                            aria-expanded="false"><i class="fa-solid fa-person-chalkboard"></i><span
+                                                class="hide-menu">&nbsp;&nbsp;&nbsp;Professeurs</span></a></li>
 
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="./etudiants" aria-expanded="false"><i
-                                            class="fa-solid fa-graduation-cap"></i><span
-                                            class="hide-menu">&nbsp;&nbsp;&nbsp;Etudiants</span></a></li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="./modules" aria-expanded="false"><i
-                                            class="fa-solid fa-book-open-reader"></i><span
-                                            class="hide-menu">&nbsp;&nbsp;&nbsp;Modules</span></a>
-                                </li>
-                                <% break; } %>
+                                    <li class="sidebar-item"> <a
+                                            class="sidebar-link waves-effect waves-dark sidebar-link" href="./etudiants"
+                                            aria-expanded="false"><i class="fa-solid fa-graduation-cap"></i><span
+                                                class="hide-menu">&nbsp;&nbsp;&nbsp;Etudiants</span></a></li>
+                                    <li class="sidebar-item"> <a
+                                            class="sidebar-link waves-effect waves-dark sidebar-link" href="./modules"
+                                            aria-expanded="false"><i class="fa-solid fa-book-open-reader"></i><span
+                                                class="hide-menu">&nbsp;&nbsp;&nbsp;Modules</span></a>
+                                    </li>
+                                    <li class="sidebar-item"> <a
+                                            class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            href="./listedesdemandes" aria-expanded="false"><i
+                                                class="fa-solid fa-list-check"></i><span
+                                                class="hide-menu">&nbsp;&nbsp;&nbsp;Liste des demandes</span></a>
+                                    </li>
+                                    <% break; } %>
 
                     </ul>
 
@@ -348,7 +374,7 @@
                                             <a href="javascript:void(0)" class="link">
                                                 <i class="icon-people" aria-hidden="true"></i>
 
-                                                <span class="value-digit">Ensaj </span>
+                                                <span class="value-digit">ENSAJ </span>
 
                                                 <span class="value-digit"></span>
 
