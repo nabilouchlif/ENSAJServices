@@ -1174,7 +1174,7 @@ app.post('/downloaddemande', (req, res) => {
                 'Content-Type': 'application/pdf',
                 'Content-Disposition': `attachment;filename=invoice.pdf`,
             });
-            pdfService.buildPDF(
+            pdfCervices.buildPDF(
                 (chunk) => stream.write(chunk),
                 () => stream.end(),
                 result
@@ -1191,7 +1191,7 @@ app.post('/downloadcertif', (req, res) => {
                 'Content-Type': 'application/pdf',
                 'Content-Disposition': `attachment;filename=invoice.pdf`,
             });
-            pdfCertif.buildPDF(
+            pdfCervices.buildPDF(
                 (chunk) => stream.write(chunk),
                 () => stream.end(),
                 result
