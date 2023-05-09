@@ -1166,6 +1166,23 @@ app.post('/downloadcertif', (req, res) => {
         })
 })
 
+app.post('/downloadcerter', (req, res) => {
+    const id = req.body.demcertid;
+    Demcert.findById(id)
+        .then(result => {
+            // Generate a PDF
+            const stream = res.writeHead(200, {
+                'Content-Type': 'application/pdf',
+                'Content-Disposition': `attachment;filename=invoice.pdf`,
+            });
+            pdfCertif.buildPDF(
+                (chunk) => stream.write(chunk),
+                () => stream.end(),
+                result
+            );
+        })
+})
+
 app.post('/professeurdecision', (req, res) => {
     const id = req.body.demandeid;
     console.log(id)
