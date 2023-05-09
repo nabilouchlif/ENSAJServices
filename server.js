@@ -879,7 +879,7 @@ app.post('/pdfcervice', (req, res, next) => {
                 'Content-Type': 'application/pdf',
                 'Content-Disposition': `attachment;filename=invoice.pdf`,
             });
-            pdfService.buildPDF(
+            pdfCervices.buildPDF(
                 (chunk) => stream.write(chunk),
                 () => stream.end(),
                 demcert
@@ -1150,15 +1150,15 @@ app.post('/downloaddemande', (req, res) => {
 })
 
 app.post('/downloadcertif', (req, res) => {
-    const id = req.body.certifid;
-    Certificat.findById(id)
+    const id = req.body.demcertid;
+    Demcert.findById(id)
         .then(result => {
             // Generate a PDF
             const stream = res.writeHead(200, {
                 'Content-Type': 'application/pdf',
                 'Content-Disposition': `attachment;filename=invoice.pdf`,
             });
-            pdfService.buildPDF(
+            pdfCertif.buildPDF(
                 (chunk) => stream.write(chunk),
                 () => stream.end(),
                 result

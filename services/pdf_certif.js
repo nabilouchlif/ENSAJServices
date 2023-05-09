@@ -1,6 +1,6 @@
 const PDFDocument = require('pdfkit');
 
-function buildPDF(dataCallback, endCallback, certif) {
+function buildPDF(dataCallback, endCallback, demcert) {
     const doc = new PDFDocument({ bufferPages: true, font: 'Courier' });
 
     doc.on('data', dataCallback);
@@ -21,7 +21,7 @@ function buildPDF(dataCallback, endCallback, certif) {
         .font('Times-Roman')
         .fontSize(15)
         .text(
-            "Le Directeur de l'Ecole Nationale des Sciences Appliquées d'El Jadida (ENSA-J), soussigné, atteste que :" + certif.etudiant, {
+            "Le Directeur de l'Ecole Nationale des Sciences Appliquées d'El Jadida (ENSA-J), soussigné, atteste que :" + demcert.etudiant, {
             width: 410,
             align: 'left'
         }
@@ -32,7 +32,7 @@ function buildPDF(dataCallback, endCallback, certif) {
         .font('Times-Roman')
         .fontSize(15)
         .text(
-            "L'élève :" + certif.etudiant, {
+            "L'élève :" + demcert.etudiant, {
             width: 410,
             align: 'left'
         }
@@ -42,7 +42,7 @@ function buildPDF(dataCallback, endCallback, certif) {
         .font('Times-Roman')
         .fontSize(15)
         .text(
-            "CNE : " + certif.cne, {
+            "CNE : " + demcert.cne, {
             width: 410,
             align: 'center'
         }
@@ -62,7 +62,7 @@ function buildPDF(dataCallback, endCallback, certif) {
         .font('Times-Roman')
         .fontSize(12)
         .text(
-            "Fait à El Jadida le : " + certif.datedepot.toDateString(), {
+            "Fait à El Jadida le : " + demcert.datedepot, {
             width: 410,
             align: 'right'
         }
