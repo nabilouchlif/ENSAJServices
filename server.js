@@ -497,40 +497,6 @@ app.get('/addmodule', (req, res) => {
     }
 })
 
-app.get('/gestionpv', (req, res) => {
-
-    if (ourClient.role == "Cordinateur") {
-        Modules.find()
-            .then((result) => {
-                res.render('gestionpv', {
-                    modules: result
-                });
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    } else {
-        res.render('error')
-    }
-})
-
-app.get('/pv', (req, res) => {
-
-    if (ourClient.role == "Cordinateur") {
-        Modules.find()
-            .then((result) => {
-                res.render('pv', {
-                    modules: result
-                });
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    } else {
-        res.render('error')
-    }
-})
-
 app.post('/updatemodule', (req, res) => {
     const id = req.body.moduleid;
     Prof.find()
