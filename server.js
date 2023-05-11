@@ -12,8 +12,11 @@ const { result } = require('lodash');
 const pdfService = require('./services/pdf_services');
 const pdfCertif = require('./services/pdf_certif');
 const pdfCervices = require('./services/pdf_cervices');
+const pdfConvention = require('./services/pdf_convention');
 const Certificat = require('./models/certifsModel');
 const Demcert = require('./models/demandeCertsModel');
+const ConvStage = require('./models/conventionstage');
+const nodemailer = require('nodemailer');
 const app = express();
 
 
@@ -244,8 +247,8 @@ app.post('/signinadmin', (req, res) => {
             nom: "Ensaj",
             prenom: "Admin",
             image: "1661708690257ensajlogo.png",
-            email: "admin@ensaj.com",
-            password: "123",
+            email: "laasrimohamed2023@gmail.com",
+            password: "Moad@@2001",
             departement: "TRI",
             role: "Cordinateur"
         }
@@ -867,6 +870,7 @@ app.post('/pdfcervice', (req, res, next) => {
             etudiant: req.body.etudiant,
             cin: req.body.cin,
             cne: req.body.cne,
+            email: req.body.email,
             message: req.body.message,
             etat: "en attente"
         }
@@ -891,6 +895,42 @@ app.post('/pdfcervice', (req, res, next) => {
         })
 });
 
+app.post('/pdfconvention', (req, res, next) => {
+
+
+    // Sauvegarder la demande
+    const convention = new ConvStage(
+        {
+            etudiant: req.body.etudiant,
+            cne: req.body.cne,
+            telephone: req.body.telephone,
+            filiere: req.body.filiere,
+            adresse: req.body.adresse,
+            datenaissance: req.body.datenaissance,
+            lieunaissance: req.body.lieunaissance,
+            nationalite: req.body.nationalite,
+            etat: "en attente"
+        }
+    );
+    convention.save()
+        .then(result => {
+            // alert("Demande envoyée avec succès!");
+            // Generate a PDF
+            const stream = res.writeHead(200, {
+                'Content-Type': 'application/pdf',
+                'Content-Disposition': `attachment;filename=invoice.pdf`,
+            });
+            pdfConvention.buildPDF(
+                (chunk) => stream.write(chunk),
+                () => stream.end(),
+                convention
+            );
+            console.log(req.body.conventionid);
+        })
+        .catch(err => {
+            console.log(err)
+        })
+});
 
 app.post('/pdfcertif', (req, res, next) => {
 
@@ -1018,16 +1058,17 @@ app.get('/relevedenote', (req, res) => {
 
 app.get('/conventiondestage', (req, res) => {
     if (ourClient.role == "Etudiant") {
-        let Demandeconvention = []
+        let demandeconvention = []
         Demande.find()
             .then(result => {
                 result.forEach(demande => {
                     if (demande.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
-                        Demandeconvention.push(demande);
+                        demandeconvention.push(demande);
                     }
                 });
                 res.render('conventiondestage', {
-                    demandes: Demandeconvention
+                    person: ourClient,
+                    demandes: demandeconvention
                 })
             })
             .catch(err => {
@@ -1198,16 +1239,56 @@ app.post('/professeurdecision', (req, res) => {
 
 app.post('/admindecision', (req, res) => {
     const id = req.body.demcertid;
-    console.log(id)
-    Demcert.findByIdAndUpdate(id, { etat: req.body.decision },
-        function (err, docs) {
-            if (err) {
-                console.log(err)
-            } else {
-                console.log("Updated demande : ", docs);
-            }
-        });
-    res.redirect('listedesdemandes')
+    const decision = req.body.decision;
+
+    // Retrieve the email address of the student from the database
+    Demcert.findById(id, (err, demcert) => {
+        if (err) {
+            console.log(err);
+        } else {
+            const studentEmail = demcert.email; // Assuming the email is stored in the 'email' field
+
+            Demcert.findByIdAndUpdate(id, { etat: req.body.decision }, (err, docs) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("Updated demande: ", docs);
+
+                    if (decision === 'Approuvée') {
+                        // Set up Nodemailer transporter
+                        const transporter = nodemailer.createTransport({
+                            host: 'smtp.gmail.com',
+                            port: 465,
+                            secure: true,
+                            auth: {
+                                user: 'laasrimohamed2023@gmail.com',
+                                pass: 'voylbdulhhvbbokr'
+                            }
+                        });
+
+                        // Compose email
+                        const mailOptions = {
+                            from: 'laasrimohamed2023@gmail.com',
+                            to: studentEmail, // Use the student's email address as the recipient
+                            subject: 'Request Approved',
+                            text: 'Your request has been approved.'
+                        };
+
+                        // Send email
+                        transporter.sendMail(mailOptions, (error, info) => {
+                            if (error) {
+                                console.log('Email sending error:', error);
+                            } else {
+                                console.log('Email sent:', info.response);
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
+
+    res.redirect('listedesdemandes');
 })
 
 app.get('/dash', async (req, res) => {
