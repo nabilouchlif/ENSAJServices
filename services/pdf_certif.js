@@ -25,7 +25,7 @@ function buildPDF(dataCallback, endCallback, demcert) {
         .text(
             "Le Directeur de l'Ecole Nationale des Sciences Appliquées d'El Jadida (ENSA-J), soussigné, atteste que :" , {
             width: 410,
-            align: 'left'
+            align: 'justify'
         }
         )
         .moveDown(0.5);
