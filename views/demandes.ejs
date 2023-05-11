@@ -449,21 +449,22 @@
                                         <label class="col-md-12 mb-0">CIN</label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control ps-0 form-control-line" name="cin"
-                                                required>
+                                                value="<%= person.cin %>" readonly="readonly" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12 mb-0">CNE</label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control ps-0 form-control-line" name="cne"
-                                                required style="color: blue;">
+                                                value="<%= person.cne %>" readonly="readonly" required style="color: blue;">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12 mb-0">CNE</label>
+                                        <label class="col-md-12 mb-0">Email</label>
                                         <div class="col-md-12">
-                                            <input type="email" value="<%= person.email %>" class="form-control ps-0 form-control-line" name="email"
-                                                required style="color: blue;">
+                                            <input type="email" value="<%= person.email %>" readonly="readonly"
+                                                class="form-control ps-0 form-control-line" name="email" required
+                                                style="color: blue;">
                                         </div>
                                     </div>
 
