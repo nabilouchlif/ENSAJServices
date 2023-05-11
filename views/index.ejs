@@ -375,7 +375,7 @@
                                         <div class="col-4">
                                             <a href="javascript:void(0)" class="link">
                                                 <i class="icon-picture" aria-hidden="true"></i>
-                                                <span class="value-digit">R130178</span>
+                                                <span class="value-digit"><%= ourClient.cin %></span>
                                             </a>
                                         </div>
                                     </div>
@@ -408,7 +408,20 @@
                                         </div>
                                     </div>
                                     <% if (person.role=="Etudiant" ) { %>
-
+                                        <div class="form-group">
+                                            <label class="col-md-12 mb-0">CIN</label>
+                                            <div class="col-md-12">
+                                                <input type="text" value="<%= person.cin %>"
+                                                    class="form-control ps-0 form-control-line" name="cin" readonly="readonly" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-12 mb-0">CNE</label>
+                                            <div class="col-md-12">
+                                                <input type="text" value="<%= person.cne %>"
+                                                    class="form-control ps-0 form-control-line" name="cne" readonly="readonly" required>
+                                            </div>
+                                        </div>
 
                                         <div class="form-group">
                                             <label class="col-md-12 mb-0">Filiere</label>

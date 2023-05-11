@@ -134,6 +134,8 @@ app.post('/updateProfile', upload.single('image'), async (req, res) => {
             {
                 nom: user.nom,
                 prenom: user.prenom,
+                cin: user.cin,
+                cne: user.cne,
                 filiere: user.filiere,
                 image: req.file.filename,
                 email: user.email,
@@ -185,6 +187,8 @@ app.post('/addStudent', upload.single('image'), (req, res) => {
     const student = new Student({
         nom: req.body.nom,
         prenom: req.body.prenom,
+        cin: req.body.cin,
+        cne: req.body.cne,
         filiere: req.body.filiere,
         email: req.body.email,
         password: req.body.password,
@@ -796,22 +800,29 @@ app.post('/demandevoircopie', (req, res) => {
 })
 
 app.post('/demandecertif', (req, res) => {
+    const cin = req.body.cin;
+    const cne = req.body.cne;
     const id = req.body.demcertid;
 
     Demcert.findById(id)
-        .then(result => {
+        .then(result => {// Assign the id value from result to a variable
+
             res.render('demandes', {
                 certif: result,
                 person: ourClient,
                 recorrection: false,
                 voircopie: false,
-                certif: true
-            })
+                certif: true,
+                cin: cin, // Pass cin value to the rendering template
+                cne: cne, // Pass cne value to the rendering template
+            });
         })
         .catch(err => {
-            console.log(err)
-        })
-})
+            console.log(err);
+        });
+});
+
+
 
 app.get('/demandes', (req, res) => {
     if (ourClient.role == "Etudiant") {
@@ -1013,16 +1024,16 @@ app.get('/suivredemcert', (req, res) => {
 app.get('/certifscolarite', (req, res) => {
     if (ourClient.role == "Etudiant") {
         let Demandecertif = []
-        Certificat.find()
+        Demcert.find()
             .then(result => {
-                result.forEach(certif => {
-                    if (certif.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
-                        Demandecertif.push(certif);
+                result.forEach(demcert => {
+                    if (demcert.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
+                        Demandecertif.push(demcert);
                     }
                 });
                 res.render('certifscolarite', {
                     person: ourClient,
-                    certifs: Demandecertif
+                    demcerts: Demandecertif
                 })
             })
             .catch(err => {

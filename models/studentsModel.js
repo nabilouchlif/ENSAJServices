@@ -10,6 +10,14 @@ const studentSchema = new Schema({
             type: String,
             required: true
         },
+        cin: {
+            type: String,
+            required: true
+        },
+        cne: {
+            type: String,
+            required: true
+        },
         filiere: {
             type: String,
             required: true
