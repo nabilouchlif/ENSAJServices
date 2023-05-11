@@ -654,61 +654,97 @@
           <div class="table-title">
             <div class="row">
               <div class="col-sm-5">
-                <h2><b>Demande de certification scolaire</b></h2>
+                <h2><b>Demande de convention de stage</b></h2>
               </div>
-
             </div>
           </div>
-
           <div class="clearfix">
             <div id="container">
-
               <div class="card bg-white">
-
                 <div class="card-body container-fluid">
-                  <div class="row">
-
-                    <div class="col-sm-6 mb-2">
-                      <h3>
-                        <%= ourClient.prenom + " " + ourClient.nom %>
-                      </h3>
-                    </div>
-                    <div class="col-sm-6 mb-2">
-                      <label for="adresse">CIN : </label> <input class="" type="text" id="id" hidden> <input
-                        class="form-control" type="text" id="adresse" required>
-
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-6 mb-2">
-                      <label for="nom">CNE : </label> <input class="form-control" type="text" id="nom" required>
-                    </div>
-                    <div class="col-sm-6 mb-2">
-                      <label for="adresse">Tél : </label> <input class="" type="text" id="id" hidden> <input
-                        class="form-control" type="text" id="adresse" required>
-
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-6 mb-2">
-                      <label for="nom">Email : </label> <input class="form-control" type="email" id="nom" required>
-                    </div>
+                  <form class="form-horizontal form-material mx-2" action="./pdfconvention" method="post">
                     <div class="row">
-                      <div class="col">
-                        <button type="button" class="btn btn-outline-success mt-3 mb-3" id="btn">Demander la
-                          certification</button>
+                      <div class="form-group">
+                        <div class="col-sm-6 mb-2">
+                          <h3>
+                            <%= ourClient.prenom + " " + ourClient.nom %>
+                              <input type="hidden" value="<%= person.prenom + " " + person.nom %>" name="etudiant">
+                          </h3>
+                          <h4>
+                            <%= ourClient.filiere %>
+                              <input type="hidden" value="<%= person.filiere %>" %> " name="filiere">
+                          </h4>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-sm-6 mb-2">
+                          <label for="cne">CNE : </label> <input class="form-control ps-0 form-control-line" type="text"
+                            name="cne" required>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                    <div class="row">
+                      <div class="form-group">
+                        <div class="col-sm-6 mb-2">
+                          <label for="datenaissance">Date de naissance : </label> <input
+                            class="form-control ps-0 form-control-line" type="date" name="datenaissance" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-sm-6 mb-2">
+                          <label for="lieunaissance">Lieu de naissance : </label> <input
+                            class="form-control ps-0 form-control-line" type="text" name="lieunaissance" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group">
+                        <div class="col-sm-6 mb-2">
+                          <label for="email">Email : </label> <input class="form-control ps-0 form-control-line"
+                            type="email" name="email" value="<%= person.email %>" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-sm-6 mb-2">
+                          <label for="telephone">Tél : </label> <input class="form-control ps-0 form-control-line"
+                            type="text" name="telephone" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group">
+                        <div class="col-sm-6 mb-2">
+                          <label for="adresse">Adresse : </label> <input class="form-control ps-0 form-control-line"
+                            type="text" name="adresse" value="<%= person.email %>" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-sm-6 mb-2">
+                          <label for="nationalite">Nationalité : </label> <input
+                            class="form-control ps-0 form-control-line" type="text" name="nationalite" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group">
+                        <div class="col">
+                          <button class="btn btn-success mx-auto mx-md-0 text-white">Demander la
+                            convention</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
                 </div>
-
               </div>
             </div>
+
           </div>
         </div>
-
       </div>
     </div>
+
+  </div>
+  </div>
   </div>
   </div>
   </div>
@@ -746,5 +782,7 @@
 
 
 </body>
+
+</html>
 
 </html>

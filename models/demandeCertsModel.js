@@ -18,6 +18,10 @@ const demcertSchema = new Schema({
         type: String,
         required: true
     },
+    email: {
+        type: String,
+        required: true
+    },
     message: {
         type: String,
         required: true
