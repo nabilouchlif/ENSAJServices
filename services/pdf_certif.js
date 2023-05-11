@@ -70,6 +70,18 @@ function buildPDF(dataCallback, endCallback, demcert) {
         }
         )
         .moveDown(0.5);
+
+    doc.image("./assets/images/Signature.png", { width: 510, height: 100, align: 'center', valign: 'top' }).moveDown(1.5);
+    doc
+        .font('Times-Roman')
+        .fontSize(8)
+        .text(
+            "Avis Important : Il ne peut être délivré qu'un seul exemplaire du présent certificat d'inscription. Aucun duplicata ne sera fourni." , {
+            width: 410,
+            align: 'left'
+        }
+        )
+        .moveDown(0.5);
     doc.end();
 }
 
