@@ -22,6 +22,7 @@ Description: This Template is created for web template
 
 img {
     max-width: 100%;
+    margin-left: 10px;
 }
 
 a {
@@ -337,15 +338,16 @@ body {
 
 @media screen and (max-width: 340px) {
     .login-box {
-        width: 88%;
+        width: 80%;
     }
 }
 
 .login-box .bklmj {
     background-image: url("./imgs/bg.png");
     background-size: cover;
-    padding: 40px;
-    padding-bottom: 48px;
+    padding: 19px;
+    padding-right: 8px;
+    padding-bottom: 24px;
 }
 
 .login-box .linkoi ul {
@@ -375,6 +377,7 @@ body {
     float: right;
     border-radius: 50px;
     width: 120px;
+    margin-right: 20px;
     box-shadow: none;
 }
 
