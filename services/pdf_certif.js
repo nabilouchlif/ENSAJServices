@@ -9,7 +9,7 @@ function buildPDF(dataCallback, endCallback, demcert) {
     doc.on('end', endCallback);
     // Stretch the image
     // doc.image("./assets/images/tri_logo.png",  {width: 70, height: 70, align: 'right', valign: 'top'})
-    doc.image("./assets/images/ensajlogo.png", { width: 120, height: 90, align: 'left', valign: 'top' }).moveDown(1.5);
+    doc.image("./assets/images/Universite.png", { width: 510, height: 100, align: 'center', valign: 'top' }).moveDown(1.5);
     // doc.fontSize(25).text( "Type de la demande : " + demande.type);
     doc.font('Times-Roman')
         .fontSize(26)
@@ -23,9 +23,9 @@ function buildPDF(dataCallback, endCallback, demcert) {
         .font('Times-Roman')
         .fontSize(15)
         .text(
-            "Le Directeur de l'Ecole Nationale des Sciences Appliquées d'El Jadida (ENSA-J), soussigné, atteste que :" + demcert.etudiant, {
+            "Le Directeur de l'Ecole Nationale des Sciences Appliquées d'El Jadida (ENSA-J), soussigné, atteste que :" , {
             width: 410,
-            align: 'left'
+            align: 'justify'
         }
         )
         .moveDown(0.5);
@@ -34,9 +34,9 @@ function buildPDF(dataCallback, endCallback, demcert) {
         .font('Times-Roman')
         .fontSize(15)
         .text(
-            "L'élève :" + demcert.etudiant, {
+            "     L'élève :" + demcert.etudiant, {
             width: 410,
-            align: 'left'
+            align: 'center'
         }
         )
         .moveDown(0.5);
@@ -54,7 +54,7 @@ function buildPDF(dataCallback, endCallback, demcert) {
         .font('Times-Roman')
         .fontSize(15)
         .text(
-            "Est inscrit(e) en Deuxième année de la filière au titre de l'année universitaire 2022/2023, et poursuit ses études à l'Ecole Nationale des Sciences Appliquées.", {
+            "Est inscrit(e) en Deuxième année de la filière "+ ourClient.filiere +" au titre de l'année universitaire 2022/2023, et poursuit ses études à l'Ecole Nationale des Sciences Appliquées.", {
             width: 500,
             align: 'justify'
         }

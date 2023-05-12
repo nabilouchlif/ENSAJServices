@@ -204,7 +204,19 @@ body {
 .page-nav ul li a {
     color: #444;
 }
+.btne {
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+    background-color: transparent;
+}
 
+.box-de .btne {
+    margin-top: 25px;
+    border-radius: 30px;
+    font-size: 2rem;
+    width: 430px;
+    height: 170px;
+}
 .btn-success {
     background-color: #863dd9;
     border-color: #863dd9;
