@@ -45,7 +45,7 @@ const upload = multer({
 });
 
 const port = process.env.PORT || 4040;
-mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.o6ytzzm.mongodb.net/test"
+mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.iukxaek.mongodb.net/test"
 mongoose.connect(mongo_url)
     .then((res) => {
         app.listen(port);
@@ -175,7 +175,7 @@ app.post('/updateProfile', upload.single('image'), async (req, res) => {
                     console.log(err)
                 } else {
                     console.log("Updated User : ", docs);
-                    const result = await Student.findById(user.userId);
+                    const result = await Prof.findById(user.userId);
                     res.render('index',
                         {
                             person: result,
