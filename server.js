@@ -908,8 +908,6 @@ app.post('/pdfcervice', (req, res, next) => {
 
 app.post('/pdfconvention', (req, res, next) => {
 
-    const email = Array.isArray(req.body.email) ? req.body.email[0] : req.body.email;
-
     const convention = new Convention(
         {
             type: req.body.type,
@@ -921,7 +919,7 @@ app.post('/pdfconvention', (req, res, next) => {
             datenaissance: req.body.datenaissance,
             lieunaissance: req.body.lieunaissance,
             nationalite: req.body.nationalite,
-            email: email, // Assign the extracted email value
+            email: req.body.email, // Assign the extracted email value
             etat: "en attente"
         }
     );
