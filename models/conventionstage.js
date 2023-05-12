@@ -38,6 +38,10 @@ const conventionSchema = new Schema({
         type: String,
         required: true
     },
+    email: {
+        type: String,
+        required: true
+    },
     etat: {
         type: String,
         required: true
