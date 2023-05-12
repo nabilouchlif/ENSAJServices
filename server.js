@@ -15,7 +15,7 @@ const pdfCervices = require('./services/pdf_cervices');
 const pdfConvention = require('./services/pdf_convention');
 const Certificat = require('./models/certifsModel');
 const Demcert = require('./models/demandeCertsModel');
-const ConvStage = require('./models/conventionstage');
+const Convention = require('./models/conventionstage');
 const nodemailer = require('nodemailer');
 const app = express();
 
@@ -910,8 +910,9 @@ app.post('/pdfconvention', (req, res, next) => {
 
 
     // Sauvegarder la demande
-    const convention = new ConvStage(
+    const convention = new Convention(
         {
+            type: req.body.type,
             etudiant: req.body.etudiant,
             cne: req.body.cne,
             telephone: req.body.telephone,
@@ -1001,25 +1002,42 @@ app.get('/suivredemande', (req, res) => {
 
 app.get('/suivredemcert', (req, res) => {
     if (ourClient.role == "Etudiant") {
-        let listOfDemcerts = []
-        Demcert.find()
-            .then(result => {
-                result.forEach(demcert => {
-                    if (demcert.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
-                        listOfDemcerts.push(demcert);
-                    }
-                });
-                res.render('suivredemcert', {
-                    demcerts: listOfDemcerts
-                })
+      let listOfDemcerts = [];
+      let listOfConventions = [];
+  
+      Demcert.find()
+        .then(result => {
+          result.forEach(demcert => {
+            if (demcert.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
+              listOfDemcerts.push(demcert);
+            }
+          });
+          
+          Convention.find()
+            .then(conventionResult => {
+              conventionResult.forEach(convention => {
+                if (convention.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
+                  listOfConventions.push(convention);
+                }
+              });
+  
+              res.render('suivredemcert', {
+                demcerts: listOfDemcerts,
+                conventions: listOfConventions
+              });
             })
             .catch(err => {
-                console.log(err);
-            })
+              console.log(err);
+            });
+        })
+        .catch(err => {
+          console.log(err);
+        });
     } else {
-        res.render('error')
+      res.render('error');
     }
-})
+  });
+  
 
 app.get('/certifscolarite', (req, res) => {
     if (ourClient.role == "Etudiant") {
@@ -1070,7 +1088,7 @@ app.get('/relevedenote', (req, res) => {
 app.get('/conventiondestage', (req, res) => {
     if (ourClient.role == "Etudiant") {
         let demandeconvention = []
-        Demande.find()
+        Convention.find()
             .then(result => {
                 result.forEach(demande => {
                     if (demande.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
@@ -1140,6 +1158,20 @@ app.post('/deletedemcert', (req, res) => {
         })
 })
 
+app.post('/deleteconvention', (req, res) => {
+    const id = req.body.conventionid;
+    Convention.findByIdAndDelete(id)
+        .then(() => {
+            Convention.find()
+                .then((result) => {
+                    res.redirect('suivredemcert');
+                })
+        })
+        .catch(err => {
+            console.log(err);
+        })
+})
+
 app.get('/listedemandes', (req, res) => {
     if (ourClient.role == "Professeur") {
         let listedesdemandes = [];
@@ -1173,6 +1205,19 @@ app.get('/listedesdemandes', (req, res) => {
                 });
                 res.render('listedesdemandes', {
                     demcerts: listedesdemcerts
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            let listedesconventions = [];
+        Convention.find()
+            .then(result => {
+                result.forEach(convention => {
+                    listedesconventions.push(convention);
+                });
+                res.render('listedesdemandes', {
+                    conventions: listedesconventions
                 })
             })
             .catch(err => {
