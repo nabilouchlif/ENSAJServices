@@ -10,8 +10,8 @@ function buildPDF(dataCallback, endCallback, convention) {
     doc.image("./assets/images/ensajlogo.png", { width: 120, height: 90, align: 'left', valign: 'top' }).moveDown(1.5);
     // doc.fontSize(25).text( "Type de la demande : " + demande.type);
     doc
-        .font('Times-Roman')
-        .fontSize(15)
+        .font('Times-Bold')
+        .fontSize(26)
         .text(
             "Demande de " + convention.type, {
             width: 410,
