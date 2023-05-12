@@ -470,7 +470,7 @@
               <tr>
 
                 <th>Type</th>
-                <th>CNE</th>
+                <th>Identifiant</th>
                 <th>Télécharger</th>
                 <th>Etat</th>
                 <!-- <th>Status</th> -->
@@ -489,7 +489,7 @@
                     <%= demcert.type %>
                   </td>
                   <td>
-                    <%= demcert.cne %>
+                    <%= demcert._id %>
                   </td>
 
                   <% switch (demcert.etat) { case 'en attente' : %>
@@ -543,7 +543,7 @@
                         <%= convention.type %>
                       </td>
                       <td>
-                        <%= convention.cne %>
+                        <%= convention._id %>
                       </td>
 
                       <% switch (convention.etat) { case 'en attente' : %>
