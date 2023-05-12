@@ -579,7 +579,54 @@
                                     </td> -->
                     </tr>
                     <% }) %>
-                      <!-- <tr>
+                      <% releves.forEach(releve=> { %>
+
+
+                        <tr>
+
+
+                          <td>
+                            <%= releve.type %>
+                          </td>
+                          <td>
+                            <%= releve._id %>
+                          </td>
+
+                          <% switch (releve.etat) { case 'en attente' : %>
+                            <td></td>
+                            <td style="color: rgb(227, 177, 40);">
+                              <%= releve.etat %>
+                            </td>
+                            <% break; case 'Approuvée' : %>
+                              <td>
+                              </td>
+                              <td style="color: rgb(96, 230, 33);">
+                                <%= releve.etat %>
+                              </td>
+                              <% break; case 'Non approuvée' : %>
+                                <td></td>
+                                <td style="color: rgb(233, 33, 30);">
+                                  <%= releve.etat %>
+                                </td>
+                                <% break; } %>
+                                  <td>
+                                    <form action="/deletereleve" method="post">
+                                      <input type="hidden" name="releveid" value="<%= releve._id %>">
+                                      <button class="delete" title="Delete" data-toggle="tooltip"
+                                        style="border: white;"><i class="fa-regular fa-trash-can"
+                                          style="color: rgb(226, 72, 72);"></i></button>
+                                    </form>
+                                  </td>
+
+                                  <!-- <td class="align-middle">
+                                        <div class="progress-text">50%</div>
+                                        <div class="progress" data-height="6" style="height: 6px;">
+                                            <div class="progress-bar bg-success" data-width="50%" style="width: 50%;"></div>
+                                        </div>
+                                    </td> -->
+                        </tr>
+                        <% }) %>
+                          <!-- <tr>
                                     
                                     <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"> </td>
                                     <td>Fouad Kharroubi </td>                       
@@ -592,7 +639,7 @@
                                 </tr>
                                 <tr> -->
 
-                      <!-- <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"> </td>
+                          <!-- <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"> </td>
                                     <td>Lachgar Mohamed</td>
                                     <td>Publisher</td>
                                     <td><span class="status text-danger">•</span> Suspended</td>                        
@@ -603,7 +650,7 @@
                                 </tr>
                                 <tr> -->
 
-                      <!-- <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"> </td>
+                          <!-- <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"> </td>
                                     <td>Hannani Asmae</td>
                                     <td>Reviewer</td>
                                     <td><span class="status text-success">•</span> Active</td>
@@ -612,7 +659,7 @@
                                         <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
                                     </td>
                                 </tr> -->
-                      <!-- <tr>
+                          <!-- <tr>
                                     
                                     <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"> </td>
                                     <td>Mohamed Fertat</td>                        

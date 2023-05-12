@@ -595,6 +595,63 @@
                                                                 <% } %>
                                                                     <% } %>
                                                                         <% }) %>
+                                                                        <% releves.forEach(releve=> { %>
+
+                                                                            <% if (releve) { %>
+                    
+                                                                                <% if (releve.etat=="en attente" ) { %>
+                    
+                    
+                                                                                    <tr>
+                    
+                                                                                        <!-- <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"></td> -->
+                                                                                        <td>
+                                                                                            <%= releve.etudiant %>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <%= releve.type %>
+                                                                                        </td>
+                    
+                                                                                        <td>
+                                                                                            <form action="/downloadrel" method="post">
+                                                                                                <input type="hidden" name="releveid"
+                                                                                                    value="<%= releve._id %>">
+                                                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button
+                                                                                                    class="" title="Telecharger la demande"
+                                                                                                    data-toggle="tooltip"
+                                                                                                    style="border: white;"><i
+                                                                                                        class="fa-solid fa-download"
+                                                                                                        style="color:rgb(97, 145, 212) ;"></i></button>
+                                                                                            </form>
+                    
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <%= releve.etat %>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <form action="./admindecisi" method="post">
+                                                                                                <input type="hidden" name="releveid"
+                                                                                                    value="<%= releve._id %>">
+                                                                                                <input type="hidden" name="decision"
+                                                                                                    value="Approuvée">
+                                                                                                <button
+                                                                                                    class="btn btn-outline-success">Approuvée</button>
+                                                                                            </form>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <form action="./admindecisi" method="post">
+                                                                                                <input type="hidden" name="releveid"
+                                                                                                    value="<%= releve._id %>">
+                                                                                                <input type="hidden" name="decision"
+                                                                                                    value="Non approuvée">
+                                                                                                <button class="btn btn-outline-danger">Non
+                                                                                                    approuvée</button>
+                                                                                            </form>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <% } %>
+                                                                                        <% } %>
+                                                                                            <% }) %>
                                                                             <!-- <tr>
                                     
                                     <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"> </td>

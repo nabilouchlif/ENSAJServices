@@ -13,9 +13,11 @@ const pdfService = require('./services/pdf_services');
 const pdfCertif = require('./services/pdf_certif');
 const pdfCervices = require('./services/pdf_cervices');
 const pdfConvention = require('./services/pdf_convention');
+const pdfReleve = require('./services/pdf_releve');
 const Certificat = require('./models/certifsModel');
 const Demcert = require('./models/demandeCertsModel');
 const Convention = require('./models/conventionstage');
+const Releve = require('./models/relevenotes');
 const nodemailer = require('nodemailer');
 const app = express();
 
@@ -43,7 +45,7 @@ const upload = multer({
 });
 
 const port = process.env.PORT || 4040;
-mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.iukxaek.mongodb.net/test"
+mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.o6ytzzm.mongodb.net/test"
 mongoose.connect(mongo_url)
     .then((res) => {
         app.listen(port);
@@ -944,6 +946,40 @@ app.post('/pdfconvention', (req, res, next) => {
         })
 });
 
+app.post('/pdfreleve', (req, res, next) => {
+
+    const releve = new Releve(
+        {
+            type: req.body.type,
+            etudiant: req.body.etudiant,
+            cne: req.body.cne,
+            telephone: req.body.telephone,
+            filiere: req.body.filiere,
+            anneeuniv: req.body.anneeuniv,
+            email: req.body.email, // Assign the extracted email value
+            etat: "en attente"
+        }
+    );
+
+    releve.save()
+        .then(result => {
+            // alert("Demande envoyée avec succès!");
+            // Generate a PDF
+            const stream = res.writeHead(200, {
+                'Content-Type': 'application/pdf',
+                'Content-Disposition': `attachment;filename=invoice.pdf`,
+            });
+            pdfReleve.buildPDF(
+                (chunk) => stream.write(chunk),
+                () => stream.end(),
+                releve
+            );
+        })
+        .catch(err => {
+            console.log(err)
+        })
+});
+
 app.post('/pdfcertif', (req, res, next) => {
 
 
@@ -1004,6 +1040,7 @@ app.get('/suivredemcert', (req, res) => {
     if (ourClient.role == "Etudiant") {
         let listOfDemcerts = [];
         let listOfConventions = [];
+        let listOfReleves = [];
 
         Demcert.find()
             .then(result => {
@@ -1021,10 +1058,23 @@ app.get('/suivredemcert', (req, res) => {
                             }
                         });
 
-                        res.render('suivredemcert', {
-                            demcerts: listOfDemcerts,
-                            conventions: listOfConventions
-                        });
+                        Releve.find()
+                            .then(releveResult => {
+                                releveResult.forEach(releve => {
+                                    if (releve.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
+                                        listOfReleves.push(releve);
+                                    }
+                                });
+
+                                res.render('suivredemcert', {
+                                    demcerts: listOfDemcerts,
+                                    conventions: listOfConventions,
+                                    releves: listOfReleves
+                                });
+                            })
+                            .catch(err => {
+                                console.log(err);
+                            });
                     })
                     .catch(err => {
                         console.log(err);
@@ -1066,15 +1116,16 @@ app.get('/certifscolarite', (req, res) => {
 app.get('/relevedenote', (req, res) => {
     if (ourClient.role == "Etudiant") {
         let Demandereleve = []
-        Demande.find()
+        Releve.find()
             .then(result => {
-                result.forEach(demande => {
-                    if (demande.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
-                        Demandereleve.push(demande);
+                result.forEach(releve => {
+                    if (releve.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
+                        Demandereleve.push(releve);
                     }
                 });
                 res.render('relevedenote', {
-                    demandes: Demandereleve
+                    person: ourClient,
+                    releves: Demandereleve
                 })
             })
             .catch(err => {
@@ -1172,6 +1223,20 @@ app.post('/deleteconvention', (req, res) => {
         })
 })
 
+app.post('/deletereleve', (req, res) => {
+    const id = req.body.releveid;
+    Releve.findByIdAndDelete(id)
+        .then(() => {
+            Releve.find()
+                .then((result) => {
+                    res.redirect('suivredemcert');
+                })
+        })
+        .catch(err => {
+            console.log(err);
+        })
+})
+
 app.get('/listedemandes', (req, res) => {
     if (ourClient.role == "Professeur") {
         let listedesdemandes = [];
@@ -1199,6 +1264,7 @@ app.get('/listedesdemandes', (req, res) => {
     if (ourClient.role == "Cordinateur") {
         let listedesdemcerts = [];
         let listedesconventions = [];
+        let listedesreleves = [];
 
         Demcert.find()
             .then(demcertResult => {
@@ -1211,11 +1277,20 @@ app.get('/listedesdemandes', (req, res) => {
                         conventionResult.forEach(convention => {
                             listedesconventions.push(convention);
                         });
-
-                        res.render('listedesdemandes', {
-                            demcerts: listedesdemcerts,
-                            conventions: listedesconventions
-                        });
+                        Releve.find()
+                            .then(releveResult => {
+                                releveResult.forEach(releve => {
+                                    listedesreleves.push(releve);
+                                });
+                                res.render('listedesdemandes', {
+                                    demcerts: listedesdemcerts,
+                                    conventions: listedesconventions,
+                                    releves: listedesreleves
+                                });
+                            })
+                            .catch(err => {
+                                console.log(err);
+                            });
                     })
                     .catch(err => {
                         console.log(err);
@@ -1281,6 +1356,23 @@ app.post('/downloadconv', (req, res) => {
         })
 })
 
+app.post('/downloadrel', (req, res) => {
+    const id = req.body.conventionid;
+    Releve.findById(id)
+        .then(result => {
+            // Generate a PDF
+            const stream = res.writeHead(200, {
+                'Content-Type': 'application/pdf',
+                'Content-Disposition': `attachment;filename=invoice.pdf`,
+            });
+            pdfReleve.buildPDF(
+                (chunk) => stream.write(chunk),
+                () => stream.end(),
+                result
+            );
+        })
+})
+
 app.post('/downloadcerter', (req, res) => {
     const id = req.body.demcertid;
     Demcert.findById(id)
@@ -1324,6 +1416,59 @@ app.post('/admindecision', (req, res) => {
             const studentEmail = demcert.email; // Assuming the email is stored in the 'email' field
 
             Demcert.findByIdAndUpdate(id, { etat: req.body.decision }, (err, docs) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("Updated demande: ", docs);
+
+                    if (decision === 'Approuvée') {
+                        // Set up Nodemailer transporter
+                        const transporter = nodemailer.createTransport({
+                            host: 'smtp.gmail.com',
+                            port: 465,
+                            secure: true,
+                            auth: {
+                                user: 'laasrimohamed2023@gmail.com',
+                                pass: 'voylbdulhhvbbokr'
+                            }
+                        });
+
+                        // Compose email
+                        const mailOptions = {
+                            from: 'laasrimohamed2023@gmail.com',
+                            to: studentEmail, // Use the student's email address as the recipient
+                            subject: 'Request Approved',
+                            text: 'Your request has been approved.'
+                        };
+
+                        // Send email
+                        transporter.sendMail(mailOptions, (error, info) => {
+                            if (error) {
+                                console.log('Email sending error:', error);
+                            } else {
+                                console.log('Email sent:', info.response);
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
+    res.redirect('listedesdemandes');
+})
+
+app.post('/admindecisi', (req, res) => {
+    const id = req.body.releveid;
+    const decision = req.body.decision;
+
+    // Retrieve the email address of the student from the database
+    Releve.findById(id, (err, releve) => {
+        if (err) {
+            console.log(err);
+        } else {
+            const studentEmail = releve.email; // Assuming the email is stored in the 'email' field
+
+            Releve.findByIdAndUpdate(id, { etat: req.body.decision }, (err, docs) => {
                 if (err) {
                     console.log(err);
                 } else {
