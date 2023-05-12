@@ -11,7 +11,7 @@ function buildPDF(dataCallback, endCallback, demcert) {
     // doc.image("./assets/images/tri_logo.png",  {width: 70, height: 70, align: 'right', valign: 'top'})
     doc.image("./assets/images/Universite.png", { width: 510, height: 100, align: 'center', valign: 'top' }).moveDown(1.5);
     // doc.fontSize(25).text( "Type de la demande : " + demande.type);
-    doc.font('Times-Roman')
+    doc.font('Times-Bold')
         .fontSize(26)
         .text("CERTIFICAT DE SCOLARITE", {
             align: 'center'
