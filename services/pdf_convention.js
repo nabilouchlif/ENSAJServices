@@ -13,6 +13,16 @@ function buildPDF(dataCallback, endCallback, convention) {
         .font('Times-Roman')
         .fontSize(15)
         .text(
+            "Demande de " + convention.type, {
+            width: 410,
+            align: 'center'
+        }
+        )
+        .moveDown(1.5);
+    doc
+        .font('Times-Roman')
+        .fontSize(15)
+        .text(
             "Code Nationale de l'élève ingénieur : " + convention.cne, {
             width: 410,
             align: 'left'
