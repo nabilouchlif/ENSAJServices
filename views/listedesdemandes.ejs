@@ -537,7 +537,65 @@
                                         <% } %>
                                             <% } %>
                                                 <% }) %>
-                                                    <!-- <tr>
+
+                                                    <% conventions.forEach(convention=> { %>
+
+                                                        <% if (convention) { %>
+
+                                                            <% if (convention.etat=="en attente" ) { %>
+
+
+                                                                <tr>
+
+                                                                    <!-- <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"></td> -->
+                                                                    <td>
+                                                                        <%= convention.etudiant %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= convention.type %>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <form action="/downloadcertif" method="post">
+                                                                            <input type="hidden" name="conventionid"
+                                                                                value="<%= convention._id %>">
+                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button
+                                                                                class="" title="Telecharger la demande"
+                                                                                data-toggle="tooltip"
+                                                                                style="border: white;"><i
+                                                                                    class="fa-solid fa-download"
+                                                                                    style="color:rgb(97, 145, 212) ;"></i></button>
+                                                                        </form>
+
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= convention.etat %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <form action="./admindecisio" method="post">
+                                                                            <input type="hidden" name="conventionid"
+                                                                                value="<%= convention._id %>">
+                                                                            <input type="hidden" name="decision"
+                                                                                value="Approuvée">
+                                                                            <button
+                                                                                class="btn btn-outline-success">Approuvée</button>
+                                                                        </form>
+                                                                    </td>
+                                                                    <td>
+                                                                        <form action="./admindecisio" method="post">
+                                                                            <input type="hidden" name="conventionid"
+                                                                                value="<%= convention._id %>">
+                                                                            <input type="hidden" name="decision"
+                                                                                value="Non approuvée">
+                                                                            <button class="btn btn-outline-danger">Non
+                                                                                approuvée</button>
+                                                                        </form>
+                                                                    </td>
+                                                                </tr>
+                                                                <% } %>
+                                                                    <% } %>
+                                                                        <% }) %>
+                                                                            <!-- <tr>
                                     
                                     <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"> </td>
                                     <td>Fouad Kharroubi </td>                       
@@ -550,7 +608,7 @@
                                 </tr>
                                 <tr> -->
 
-                                                    <!-- <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"> </td>
+                                                                            <!-- <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"> </td>
                                     <td>Lachgar Mohamed</td>
                                     <td>Publisher</td>
                                     <td><span class="status text-danger">•</span> Suspended</td>                        
@@ -561,7 +619,7 @@
                                 </tr>
                                 <tr> -->
 
-                                                    <!-- <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"> </td>
+                                                                            <!-- <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"> </td>
                                     <td>Hannani Asmae</td>
                                     <td>Reviewer</td>
                                     <td><span class="status text-success">•</span> Active</td>
@@ -570,7 +628,7 @@
                                         <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
                                     </td>
                                 </tr> -->
-                                                    <!-- <tr>
+                                                                            <!-- <tr>
                                     
                                     <td><img src="/static1/images/myImage2.png" class="avatar" alt="Avatar"> </td>
                                     <td>Mohamed Fertat</td>                        

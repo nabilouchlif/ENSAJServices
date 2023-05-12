@@ -43,7 +43,7 @@ const upload = multer({
 });
 
 const port = process.env.PORT || 4040;
-mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.iukxaek.mongodb.net/test"
+mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.o6ytzzm.mongodb.net/test"
 mongoose.connect(mongo_url)
     .then((res) => {
         app.listen(port);
@@ -1002,42 +1002,42 @@ app.get('/suivredemande', (req, res) => {
 
 app.get('/suivredemcert', (req, res) => {
     if (ourClient.role == "Etudiant") {
-      let listOfDemcerts = [];
-      let listOfConventions = [];
-  
-      Demcert.find()
-        .then(result => {
-          result.forEach(demcert => {
-            if (demcert.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
-              listOfDemcerts.push(demcert);
-            }
-          });
-          
-          Convention.find()
-            .then(conventionResult => {
-              conventionResult.forEach(convention => {
-                if (convention.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
-                  listOfConventions.push(convention);
-                }
-              });
-  
-              res.render('suivredemcert', {
-                demcerts: listOfDemcerts,
-                conventions: listOfConventions
-              });
+        let listOfDemcerts = [];
+        let listOfConventions = [];
+
+        Demcert.find()
+            .then(result => {
+                result.forEach(demcert => {
+                    if (demcert.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
+                        listOfDemcerts.push(demcert);
+                    }
+                });
+
+                Convention.find()
+                    .then(conventionResult => {
+                        conventionResult.forEach(convention => {
+                            if (convention.etudiant == (ourClient.prenom + " " + ourClient.nom)) {
+                                listOfConventions.push(convention);
+                            }
+                        });
+
+                        res.render('suivredemcert', {
+                            demcerts: listOfDemcerts,
+                            conventions: listOfConventions
+                        });
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
             })
             .catch(err => {
-              console.log(err);
+                console.log(err);
             });
-        })
-        .catch(err => {
-          console.log(err);
-        });
     } else {
-      res.render('error');
+        res.render('error');
     }
-  });
-  
+});
+
 
 app.get('/certifscolarite', (req, res) => {
     if (ourClient.role == "Etudiant") {
@@ -1198,35 +1198,37 @@ app.get('/listedemandes', (req, res) => {
 app.get('/listedesdemandes', (req, res) => {
     if (ourClient.role == "Cordinateur") {
         let listedesdemcerts = [];
+        let listedesconventions = [];
+
         Demcert.find()
-            .then(result => {
-                result.forEach(demcert => {
+            .then(demcertResult => {
+                demcertResult.forEach(demcert => {
                     listedesdemcerts.push(demcert);
                 });
-                res.render('listedesdemandes', {
-                    demcerts: listedesdemcerts
-                })
+
+                Convention.find()
+                    .then(conventionResult => {
+                        conventionResult.forEach(convention => {
+                            listedesconventions.push(convention);
+                        });
+
+                        res.render('listedesdemandes', {
+                            demcerts: listedesdemcerts,
+                            conventions: listedesconventions
+                        });
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
             })
             .catch(err => {
-                console.log(err)
-            })
-            let listedesconventions = [];
-        Convention.find()
-            .then(result => {
-                result.forEach(convention => {
-                    listedesconventions.push(convention);
-                });
-                res.render('listedesdemandes', {
-                    conventions: listedesconventions
-                })
-            })
-            .catch(err => {
-                console.log(err)
-            })
+                console.log(err);
+            });
     } else {
-        res.render('error')
+        res.render('error');
     }
-})
+});
+
 
 app.post('/downloaddemande', (req, res) => {
     const id = req.body.demandeid;
@@ -1343,7 +1345,59 @@ app.post('/admindecision', (req, res) => {
             });
         }
     });
+    res.redirect('listedesdemandes');
+})
 
+app.post('/admindecisio', (req, res) => {
+    const id = req.body.conventionid;
+    const decision = req.body.decision;
+
+    // Retrieve the email address of the student from the database
+    Convention.findById(id, (err, convention) => {
+        if (err) {
+            console.log(err);
+        } else {
+            const studentEmail = convention.email; // Assuming the email is stored in the 'email' field
+
+            Convention.findByIdAndUpdate(id, { etat: req.body.decision }, (err, docs) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("Updated demande: ", docs);
+
+                    if (decision === 'Approuvée') {
+                        // Set up Nodemailer transporter
+                        const transporter = nodemailer.createTransport({
+                            host: 'smtp.gmail.com',
+                            port: 465,
+                            secure: true,
+                            auth: {
+                                user: 'laasrimohamed2023@gmail.com',
+                                pass: 'voylbdulhhvbbokr'
+                            }
+                        });
+
+                        // Compose email
+                        const mailOptions = {
+                            from: 'laasrimohamed2023@gmail.com',
+                            to: studentEmail, // Use the student's email address as the recipient
+                            subject: 'Request Approved',
+                            text: 'Your request has been approved.'
+                        };
+
+                        // Send email
+                        transporter.sendMail(mailOptions, (error, info) => {
+                            if (error) {
+                                console.log('Email sending error:', error);
+                            } else {
+                                console.log('Email sent:', info.response);
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
     res.redirect('listedesdemandes');
 })
 
