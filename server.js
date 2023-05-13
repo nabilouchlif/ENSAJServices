@@ -45,7 +45,7 @@ const upload = multer({
 });
 
 const port = process.env.PORT || 4040;
-mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.iukxaek.mongodb.net/test"
+mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.o6ytzzm.mongodb.net/test"
 mongoose.connect(mongo_url)
     .then((res) => {
         app.listen(port);
@@ -740,6 +740,25 @@ app.post('/validatemark', (req, res) => {
 
 })
 
+app.post('/updatenote', (req, res) => {
+    const noteId = req.body.noteId;
+    const updatedNote = {
+        note: req.body.note,
+        module: req.body.nameOfModule,
+        professeur: ourClient.prenom + " " + ourClient.nom,
+        etudiant: req.body.prenom + " " + req.body.nom,
+    };
+
+    Note.updateOne({ _id: noteId }, updatedNote)
+        .then(result => {
+            res.redirect('/notes');
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect('/notes'); // Handle error by redirecting to an appropriate page
+        });
+});
+
 
 app.get('/consulternote', (req, res) => {
     if (ourClient.role = "Etudiant") {
@@ -1356,7 +1375,7 @@ app.post('/downloadconv', (req, res) => {
 })
 
 app.post('/downloadrel', (req, res) => {
-    const id = req.body.conventionid;
+    const id = req.body.releveid;
     Releve.findById(id)
         .then(result => {
             // Generate a PDF
@@ -1594,6 +1613,7 @@ app.get('/dash', async (req, res) => {
         res.render('error')
     }
 })
+
 app.get('*', (req, res) => {
     res.redirect('error')
 })
