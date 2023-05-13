@@ -175,7 +175,7 @@ app.post('/updateProfile', upload.single('image'), async (req, res) => {
                     console.log(err)
                 } else {
                     console.log("Updated User : ", docs);
-                    const result = await Student.findById(user.userId);
+                    const result = await Prof.findById(user.userId);
                     res.render('index',
                         {
                             person: result,
