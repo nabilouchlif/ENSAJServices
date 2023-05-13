@@ -1436,8 +1436,8 @@ app.post('/admindecision', (req, res) => {
                         const mailOptions = {
                             from: 'laasrimohamed2023@gmail.com',
                             to: studentEmail, // Use the student's email address as the recipient
-                            subject: 'Request Approved',
-                            text: 'Your request has been approved.'
+                            subject: 'Demande de certificat de scolarité approuvée!',
+                            text: 'Votre demande de certificat de scolarité a été bien approuvée. Vous pouvez la télécharger maintenant.'
                         };
 
                         // Send email
@@ -1489,8 +1489,8 @@ app.post('/admindecisi', (req, res) => {
                         const mailOptions = {
                             from: 'laasrimohamed2023@gmail.com',
                             to: studentEmail, // Use the student's email address as the recipient
-                            subject: 'Request Approved',
-                            text: 'Your request has been approved.'
+                            subject: 'Demande de relevé de notes approuvée!',
+                            text: 'Votre demande de relevé de notes a été bien approuvée. Elle est maintenant disponible chez l accueil de l ENSAJ.'
                         };
 
                         // Send email
@@ -1542,8 +1542,8 @@ app.post('/admindecisio', (req, res) => {
                         const mailOptions = {
                             from: 'laasrimohamed2023@gmail.com',
                             to: studentEmail, // Use the student's email address as the recipient
-                            subject: 'Request Approved',
-                            text: 'Your request has been approved.'
+                            subject: 'Demande de convention de stage approuvée!',
+                            text: 'Votre demande de convention de stage a été bien approuvée. Elle est maintenant disponible chez l accueil de l ENSAJ.'
                         };
 
                         // Send email
