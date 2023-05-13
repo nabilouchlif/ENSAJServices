@@ -399,14 +399,14 @@
                                         <label class="col-md-12 mb-0">Nom</label>
                                         <div class="col-md-12">
                                             <input type="text" value="<%= person.nom %>"
-                                                class="form-control ps-0 form-control-line" name="nom" required>
+                                                class="form-control ps-0 form-control-line" name="nom" readonly="readonly" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12 mb-0">Prenom</label>
                                         <div class="col-md-12">
                                             <input type="text" value="<%= person.prenom %>"
-                                                class="form-control ps-0 form-control-line" name="prenom" required>
+                                                class="form-control ps-0 form-control-line" name="prenom" readonly="readonly" required>
                                         </div>
                                     </div>
                                     <% if (person.role=="Etudiant" ) { %>
@@ -446,7 +446,7 @@
                                                     <div class="col-md-12">
                                                         <input type="text" value="<%= person.departement %>"
                                                             class="form-control ps-0 form-control-line"
-                                                            name="departement" required>
+                                                            name="departement" readonly="readonly" required>
                                                     </div>
                                                 </div>
 
@@ -463,7 +463,7 @@
                                                         <label class="col-md-12 mb-0">Changer votre photo de
                                                             profile</label>
                                                         <div class="form-group">
-                                                            <input type="file" name="image" value="<%= person.image %>">
+                                                            <input type="file" name="image" value="<%= person.image %>" required>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
