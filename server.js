@@ -690,7 +690,6 @@ app.post('/addmark', (req, res) => {
                 res.render('donnernote', {
                     person: result,
                     module: moduleName
-
                 })
             })
             .catch(err => {
