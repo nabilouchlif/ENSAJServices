@@ -406,86 +406,64 @@
                                             </thead>
 
                                             <tbody>
-                                                <% person.forEach(async student=> { %>
+                                                <% person.forEach(student=> { %>
                                                     <% if (module.classe.includes(student.filiere)) { %>
                                                         <tr>
-                                                            <td><img src="static/uploads/images/<%= student.image %>"
-                                                                    class="rounded-circle" alt="Avatar"
-                                                                    style="width: 50px; height: 50px;"></td>
                                                             <td>
-                                                                <%=student.prenom + " " + student.nom %>
+                                                                <img src="static/uploads/images/<%= student.image %>"
+                                                                    class="rounded-circle" alt="Avatar"
+                                                                    style="width: 50px; height: 50px;">
+                                                            </td>
+                                                            <td>
+                                                                <%= student.prenom + " " + student.nom %>
                                                             </td>
 
-                                                            <span style="display: none;">
-                                                                <%= a=false %>
-                                                            </span>
-                                                            <% notes.forEach(mark=> { %>
+                                                            <% let studentNotes=notes.filter(mark=> mark.module ===
+                                                                module.nom && mark.etudiant === (student.prenom + " " +
+                                                                student.nom)); %>
 
-                                                                <% if (mark.module==module.nom &&
-                                                                    mark.etudiant==(student.prenom + " " + student.nom))
-                                                                    { %>
-
-                                                                    <span style="display: none;">
-                                                                        <%= a=true %>
-                                                                    </span>
-                                                                    <td>
-                                                                        <strong>
-                                                                            <%= mark.note %>
-                                                                        </strong>
-                                                                    </td>
+                                                                <% if (studentNotes.length> 0) { %>
                                                                     <form action="./updatemark" method="post">
+                                                                        <td><strong>
+                                                                                <%= studentNotes[0].note %>
+                                                                            </strong></td>
                                                                         <input type="hidden" name="studentid"
                                                                             value="<%= student._id %>">
                                                                         <input type="hidden" name="note"
-                                                                            value="<%= mark.note%>">
+                                                                            value="<%= studentNotes[0].note %>">
                                                                         <input type="hidden" name="nomModule"
                                                                             value="<%= module.nom %>">
                                                                         <td><button
                                                                                 class="btn btn-outline-secondary">Modifier
                                                                                 une note</button></td>
                                                                     </form>
+                                                                    <% } else { %>
+                                                                        <td>
+                                                                            <form action="./addmark" method="post">
+                                                                                <input type="hidden" name="studentid"
+                                                                                    value="<%= student._id %>">
+                                                                                <input type="hidden" name="nomModule"
+                                                                                    value="<%= module.nom %>">
+                                                                                <button
+                                                                                    class="btn btn-outline-primary">Attribuer
+                                                                                    une note</button>
+                                                                            </form>
+                                                                        </td>
+                                                                        <form action="./updatemark" method="post">
+                                                                            <input type="hidden" name="studentid"
+                                                                                value="<%= student._id %>">
+                                                                            <td><button
+                                                                                    class="btn btn-outline-secondary"
+                                                                                    disabled>Modifier une note</button>
+                                                                            </td>
+                                                                        </form>
+                                                                        <% } %>
 
-                                                                    <% } %>
-                                                                        <% }) %>
-
-                                                                            <% if (a==false) { %>
-                                                                                <% for (let i=0; i < 100; i++) { %>
-                                                                                    <% if (i==99) { %>
-                                                                                        <td>
-                                                                                            <form action="./addmark"
-                                                                                                method="post">
-                                                                                                <input type="hidden"
-                                                                                                    name="studentid"
-                                                                                                    value="<%= student._id %>">
-                                                                                                <input type="hidden"
-                                                                                                    name="nomModule"
-                                                                                                    value="<%= module.nom %>">
-                                                                                                <button
-                                                                                                    class="btn btn-outline-primary">Attribuer
-                                                                                                    une
-                                                                                                    note</button>
-                                                                                            </form>
-                                                                                        </td>
-                                                                                        <form action="./updatemark"
-                                                                                            method="post">
-                                                                                            <input type="hidden"
-                                                                                                name="studentid"
-                                                                                                value="<%= student._id %>">
-                                                                                            <td><button
-                                                                                                    class="btn btn-outline-secondary"
-                                                                                                    disabled>Modifier
-                                                                                                    une
-                                                                                                    note</button>
-                                                                                            </td>
-                                                                                        </form>
-
-                                                                                        <% } %>
-                                                                                            <% } %>
-                                                                                                <% } %>
                                                         </tr>
                                                         <% } %>
                                                             <% }) %>
                                             </tbody>
+
                                         </table>
                                     </div>
                                 </div>
