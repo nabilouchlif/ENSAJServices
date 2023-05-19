@@ -20,27 +20,26 @@ Gestion des flux :
 -Gestion des demandes des documents administratifs(Certificat de scolarité, Relevé de notes ...)
 
 
-#### Conception UML
+### Conception UML
 
 Voici la conception UML de notre application
-##### *4.1* Diagramme de cas d'utilisation  
+#### *4.1* Diagramme de cas d'utilisation  
 ![Imgur](https://imgur.com/KaoLMww.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg) 
 :-------------:|:----------------:|:----------------:
 ![Imgur](https://imgur.com/KaoLMww.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg) 
 
-##### *4.2* Diagramme de séquence 
+#### *4.2* Diagramme de séquence 
 ![Imgur](https://imgur.com/KaoLMww.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg) 
 :-------------:|:----------------:|:----------------:
 ![Imgur](https://imgur.com/KaoLMww.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg) 
 
-##### *4.2* Diagramme de classe  
+#### *4.2* Diagramme de classe  
 ![Imgur](https://imgur.com/KaoLMww.jpg)  |
 
-#### Architecture de l'application
+### Architecture de l'application
 
 Voici l'architecture générale de notre application
-*5.1* Architecture générale
-:------------:
+#### *4.3* Architecture générale
 ![Imgur](https://imgur.com/EltgZQR.jpg) 
 
 
