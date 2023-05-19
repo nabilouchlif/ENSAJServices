@@ -45,7 +45,7 @@ const upload = multer({
 });
 
 const port = process.env.PORT || 4040;
-mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.o6ytzzm.mongodb.net/test"
+mongo_url = "mongodb+srv://Mohamed:Mohamed123@cluster0.iukxaek.mongodb.net/test"
 mongoose.connect(mongo_url)
     .then((res) => {
         app.listen(port);
@@ -53,10 +53,8 @@ mongoose.connect(mongo_url)
     .catch((err) => {
         console.log("UNE ERREUR S'EST PRODUITE LORS DE LA CONNECTION AVEC LA BD MONGO");
     })
-// var users = [{email: "ahmed123@gmail.com", password: "123"}];
-// console.log(user_exist(users[0]));
+
 app.set("view engine", "ejs");
-//app.set("views", "name of your views folder");
 
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }));
