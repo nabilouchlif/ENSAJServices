@@ -23,20 +23,20 @@ Gestion des flux :
 #### Conception UML
 
 Voici la conception UML de notre application
-*4.1* Diagramme de cas d'utilisation  | 
-
+##### *4.1* Diagramme de cas d'utilisation  
+:-------------:|:----------------:|:----------------:
+![Imgur](https://imgur.com/KaoLMww.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg) 
+:-------------:|:----------------:|:----------------:
 ![Imgur](https://imgur.com/KaoLMww.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg) 
 
+##### *4.2* Diagramme de séquence 
+:-------------:|:----------------:|:----------------:
+![Imgur](https://imgur.com/KaoLMww.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg) 
+:-------------:|:----------------:|:----------------:
 ![Imgur](https://imgur.com/KaoLMww.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg) 
 
-*4.2* Diagramme de séquence |
-
-![Imgur](https://imgur.com/KaoLMww.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg) 
-
-![Imgur](https://imgur.com/KaoLMww.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg)  |  ![Imgur](https://imgur.com/1f142Wd.jpg) 
-
-*4.2* Diagramme de classe | 
-
+##### *4.2* Diagramme de classe  
+:-------------:|:----------------:|:----------------:
 ![Imgur](https://imgur.com/KaoLMww.jpg)  |
 
 #### Architecture de l'application
